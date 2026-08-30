@@ -1,1 +1,20 @@
-{"name":"wego-grade1-info","private":true,"version":"0.1.0","type":"module","scripts":{"gen:ics":"node scripts/gen-ics.mjs","dev":"node scripts/gen-ics.mjs && vite","build":"node scripts/gen-ics.mjs && vite build","preview":"vite preview"},"dependencies":{"@vitejs/plugin-react":"latest","vite":"latest","react":"latest","react-dom":"latest","@phosphor-icons/react":"latest"},"devDependencies":{}}
+{
+  "name": "wego-grade1-info",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "gen:ics": "node scripts/gen-ics.mjs",
+    "dev": "node scripts/gen-ics.mjs && vite",
+    "build": "node scripts/gen-ics.mjs && vite build && node scripts/prepare-sites.mjs",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@phosphor-icons/react": "latest",
+    "@vitejs/plugin-react": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "vite": "latest"
+  },
+  "devDependencies": {}
+}
