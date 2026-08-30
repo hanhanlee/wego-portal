@@ -6,10 +6,10 @@ import {
   Package, Buildings, ShieldCheck, TShirt, ShoppingBag, Car, PlayCircle, GraduationCap, Sun
 } from '@phosphor-icons/react';
 import './styles.css';
-import {common as calCommon, classes as calClasses} from './calendar-data.js';
 import {buildCalendar} from './ics.js';
+import {classPortals, resolvePortalData} from './portal-data.js';
 
-const UPDATED='2026年8月22日 00:11';
+const UPDATED='2026年8月30日';
 const nav=[
   ['/','首頁',House],
   ['/calendar','日期行程',CalendarDots],
@@ -28,30 +28,6 @@ const pencilImages=[
 
 // 資料分兩層：common（全校／一年級共通，公開）與 classes（各班專屬，隱藏路由）。
 // class slug 屬社交區隔、非資安；詳見 private repo docs/class-routing-revision-2026-08-08.md。
-const siteData={
-  common:{
-    label:'一年級共通',
-    events:calCommon.events,
-    exams:[['11/4–5','期中學力檢測','學校行事曆'],['1/12–13','期末學力檢測','學校行事曆']],
-    notices:[['8/31','第一學期開學','學校行事曆'],['9/19','學校日','學校行事曆']]
-  },
-  classes:{
-    vwej3:{
-      label:'一忠',
-      events:calClasses.vwej3.events,
-      exams:[['8/12（三）','暑輔英語評量','一忠班級群組通知'],['11/4–5','期中學力檢測','學校行事曆']],
-      notices:[
-        ['8/21','校車異動回報系統可使用學生帳號密碼登入','一忠班級群組通知'],
-        ['8月上旬','補充護眼護照與交通安全親子共學手冊說明','一忠班級群組通知'],
-        ['8/5','新增正確握筆與書寫姿勢參考','一忠班級群組通知'],
-        ['8/2','補充制體服尺寸與英文手提袋說明','一忠班級群組通知'],
-        ['7/31','夏季制體服更換與加購方式','一忠班級群組通知'],
-        ['7/31','自我介紹卡期限更正為 8月17日','一忠班級群組通知']
-      ]
-    }
-  }
-};
-
 const schoolSections=[
   ['daily','日常用品',Package],
   ['uniform','制服與尺寸',TShirt],
@@ -162,14 +138,14 @@ function HomePage({d,ctx}){
   const isClass=ctx.kind==='class';
   return <>
     <section className="home-intro">
-      <div className="welcome-copy"><h1>{isClass?`${d.label}班級資訊`:'一年級共通資訊'}</h1><p>整理學校行程、學習提醒與班級資訊，讓重要訊息更容易查找。</p><time>內容最後更新：{UPDATED}</time></div>
+      <div className="welcome-copy"><h1>{isClass?`${d.label}班級資訊`:'一年級共通資訊'}</h1><p>{isClass?'包含一年級共通與一忠專屬內容，重要資訊只需在正確範圍維護一次。':'整理一年級共通的學校行程、學習提醒與生活資訊。'}</p><time>內容最後更新：{UPDATED}</time></div>
       <div className="recent-panel"><h2>近期重要事項</h2>{d.events.slice(0,3).map(ev=><a href={withCtx('/calendar',ctx)} className="recent-row" key={ev.uid}><time>{ev.d}</time><div><strong>{ev.title}</strong>{ev.detail&&<span>{ev.detail}</span>}<Source>{ev.source}</Source></div><CaretRight/></a>)}</div>
     </section>
     <section className="portal-directory" aria-label="資訊分類">
       <a href={withCtx('/calendar',ctx)}><span className="directory-icon"><CalendarDots weight="duotone"/></span><h2>日期行程</h2><p>學校與班級的重要日期</p><ul>{d.events.slice(0,3).map(ev=><li key={ev.uid}><time>{ev.d}</time>{ev.title}</li>)}</ul><CaretRight className="directory-arrow"/></a>
       <a href={withCtx('/learning',ctx)}><span className="directory-icon"><BookOpen weight="duotone"/></span><h2>學習成長</h2><p>考試、評量與學習參考</p><ul><li>近期評量與範圍</li><li>學習資源整理</li><li>學習建議與指引</li></ul><CaretRight className="directory-arrow"/></a>
       <a href={withCtx('/school',ctx)}><span className="directory-icon"><Buildings weight="duotone"/></span><h2>學校事務</h2><p>用品、服裝、購買與接送</p><div className="topic-preview"><span><Package/>用品</span><span><TShirt/>制服</span><span><ShoppingBag/>加購</span><span><Bus/>接送</span><span><Car/>停車</span></div><CaretRight className="directory-arrow"/></a>
-      <a href={withCtx('/notices',ctx)}><span className="directory-icon"><Megaphone weight="duotone"/></span><h2>班級公告</h2><p>最新通知與資訊更正</p><ul>{d.notices.slice(0,3).map(([,title])=><li key={title}>{title}</li>)}</ul><CaretRight className="directory-arrow"/></a>
+      <a href={withCtx('/notices',ctx)}><span className="directory-icon"><Megaphone weight="duotone"/></span><h2>班級公告</h2><p>最新通知與資訊更正</p><ul>{d.notices.slice(-3).toReversed().map(item=><li key={item.id}>{item.title}</li>)}</ul><CaretRight className="directory-arrow"/></a>
     </section>
     <section className="update-band"><Clock/><strong>最新更新</strong><span>{isClass?'補充校車異動系統、護眼護照與交通安全手冊說明。':'新增《琵琶行》、《千字文（一）》與《為子祈禱文》練習影片。'}</span></section>
   </>;
@@ -217,7 +193,7 @@ function LearningPage({d,ctx}){
     <PageHeader title={`${d.label}學習成長`} description="考試、評量與學習參考"/>
     <section>
       <SectionTitle icon={BookOpen}>近期考試與評量</SectionTitle>
-      <div className="simple-table">{d.exams.map(([date,title,source])=><div key={date+title}><time>{date}</time><strong>{title}</strong><Source>{source}</Source></div>)}</div>
+      <div className="simple-table">{d.exams.map(item=><div key={item.id}><time>{item.date}</time><strong>{item.title}</strong><Source>{item.source}</Source></div>)}</div>
     </section>
     <section className="classics-section">
       <SectionTitle icon={BookOpen}>經典文學</SectionTitle>
@@ -263,7 +239,7 @@ function SchoolAffairsPage({d,ctx,path}){
   </>;
 }
 
-function NoticesPage({d}){return <><PageHeader title={`${d.label}班級公告`} description="依發布日期排列，保留來源與更新時間"/><section><SectionTitle icon={Megaphone}>最新通知</SectionTitle><div className="notice-list">{d.notices.map(([date,title,source])=><article key={date+title}><time>{date}</time><div><h3>{title}</h3><Source>{source}</Source></div></article>)}</div></section></>}
+function NoticesPage({d,ctx}){return <><PageHeader title={`${d.label}班級公告`} description={ctx.kind==='class'?'包含一年級共通與班級專屬通知':'依發布日期排列，保留來源與更新時間'}/><section><SectionTitle icon={Megaphone}>最新通知</SectionTitle><div className="notice-list">{d.notices.toReversed().map(item=><article key={item.id}><time>{item.date}</time><div><h3>{item.title}</h3><Source>{item.source}</Source></div></article>)}</div></section></>}
 
 function NotFoundPage(){return <section className="notfound"><h1>查無此頁</h1><p>這個網址沒有對應的內容，可能是連結有誤或內容已更新。</p><a className="outline-button" href="#/"><House/>回到共通首頁</a></section>}
 
@@ -274,10 +250,10 @@ function App(){
 
   let ctx, d, notfound=false;
   if(classSlug){
-    const cls=siteData.classes[classSlug];
-    if(cls){ctx={kind:'class',slug:classSlug,label:cls.label};d=cls;}
+    const cls=classPortals[classSlug];
+    if(cls){ctx={kind:'class',slug:classSlug,label:cls.label};d=resolvePortalData(classSlug);}
     else{notfound=true;ctx={kind:'common'};}
-  }else{ctx={kind:'common'};d=siteData.common;}
+  }else{ctx={kind:'common'};d=resolvePortalData();}
 
   let page;
   if(notfound) page=<NotFoundPage/>;
@@ -285,7 +261,7 @@ function App(){
   else if(path==='/calendar') page=<CalendarPage d={d} ctx={ctx}/>;
   else if(path==='/learning') page=<LearningPage d={d} ctx={ctx}/>;
   else if(path.startsWith('/school')) page=<SchoolAffairsPage d={d} ctx={ctx} path={path}/>;
-  else if(path==='/notices') page=<NoticesPage d={d}/>;
+  else if(path==='/notices') page=<NoticesPage d={d} ctx={ctx}/>;
   else page=<HomePage d={d} ctx={ctx}/>;
 
   const activePath=path.startsWith('/school')?'/school':path;

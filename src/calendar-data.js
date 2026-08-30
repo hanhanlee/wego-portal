@@ -23,9 +23,7 @@ export const classes={
     label:'一忠',
     events:[
       {uid:'vwej3-eng-0812',       d:'8/12', title:'暑輔英語評量',   detail:'英語評量',     source:'一忠班級群組通知', start:'2026-08-12', end:'2026-08-12'},
-      {uid:'vwej3-introcard-0817', d:'8/17', title:'自我介紹卡繳交', detail:'最晚繳交日期', source:'一忠班級群組通知', start:'2026-08-17', end:'2026-08-17'},
-      {uid:'wego-open-115s1',      d:'8/31', title:'第一學期開學',   detail:'',             source:'學校行事曆',       start:'2026-08-31', end:'2026-08-31'},
-      {uid:'wego-schoolday-115s1', d:'9/19', title:'學校日',         detail:'',             source:'學校行事曆',       start:'2026-09-19', end:'2026-09-19'}
+      {uid:'vwej3-introcard-0817', d:'8/17', title:'自我介紹卡繳交', detail:'最晚繳交日期', source:'一忠班級群組通知', start:'2026-08-17', end:'2026-08-17'}
     ]
   }
 };
