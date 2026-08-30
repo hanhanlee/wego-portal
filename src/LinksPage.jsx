@@ -19,7 +19,7 @@ export default function LinksPage({updated}) {
     </section>)}</div>
     <section className="bus-notes" aria-labelledby="bus-notes-title">
       <h2 className="section-title" id="bus-notes-title"><Bus/>校車異動：送出前請留意</h2>
-      <p className="section-intro">依提供的系統注意事項截圖整理（2026/8/30 收錄；原圖未標示公告日期）。申請時間、費用與規則請以系統當下公告及校車室確認為準。</p>
+      <p className="section-intro">申請前請留意截止時間與聯絡方式；費用及規則請以校車系統最新公告為準。</p>
       <p className="bus-contact">校車室 <a href="tel:0228973452">02-2897-3452</a></p>
       <ol>{busNotes.map(note=><li key={note.title}><strong>{note.title}</strong><p>{note.text}</p></li>)}</ol>
       <figure className="bus-reference">
@@ -27,9 +27,9 @@ export default function LinksPage({updated}) {
           <img src={`${import.meta.env.BASE_URL}assets/references/school-affairs/bus-change-notice.png`} alt="校車異動回報系統的六項申請注意事項，包含申請期限、聯絡方式及費用" loading="lazy" width="1893" height="799"/>
           <span>查看校車注意事項原圖<ArrowUpRight aria-hidden="true"/></span>
         </a>
-        <figcaption>點擊圖片可另開原圖、放大查看。2026/8/30 收錄，原圖未標示公告日期；請以校方最新公告為準。</figcaption>
+        <figcaption>點擊圖片可放大查看。原圖未標示公告日期，請以校方最新公告為準。</figcaption>
       </figure>
     </section>
-    <p className="links-source">來源：家長提供之學校服務連結與校車系統注意事項。部分資源需登入；無法開啟時，請確認學校帳號或洽校方，本站不代為登入。</p>
+    <p className="links-source">部分資源需使用學校帳號登入；若無法開啟，請確認登入帳號或洽校方協助。</p>
   </>;
 }

@@ -136,7 +136,7 @@ function HomePage({d,ctx}){
   const isClass=ctx.kind==='class';
   return <>
     <section className="home-intro">
-      <div className="welcome-copy">{!isClass&&<Bell className="welcome-bell" weight="duotone" aria-hidden="true"/>}<h1>{isClass?`${d.label}班級資訊`:COMMON_TITLE}</h1><p>{isClass?'包含一年級共通與一忠專屬內容，重要資訊只需在正確範圍維護一次。':'整理一年級共通的學校行程、學習提醒與生活資訊，陪家長一起從容準備每一天。'}</p><time>內容最後更新：{UPDATED}</time></div>
+      <div className="welcome-copy">{!isClass&&<Bell className="welcome-bell" weight="duotone" aria-hidden="true"/>}<h1>{isClass?`${d.label}班級資訊`:COMMON_TITLE}</h1><p>{isClass?'查看班級行程、每週課表與生活提醒。':'整理一年級共通的學校行程、學習提醒與生活資訊，陪家長一起從容準備每一天。'}</p><time>內容最後更新：{UPDATED}</time></div>
       <div className="recent-panel"><h2>近期重要事項</h2>{d.events.slice(0,3).map(ev=><a href={withCtx('/calendar',ctx)} className="recent-row" key={ev.uid}><time>{ev.d}</time><div><strong>{ev.title}</strong>{ev.detail&&<span>{ev.detail}</span>}<Source>{ev.source}</Source></div><CaretRight/></a>)}</div>
     </section>
     <section className="portal-directory" aria-label="資訊分類">
@@ -199,7 +199,7 @@ function LearningPage({d,ctx}){
     </section>
     <section className="classics-section">
       <SectionTitle icon={BookOpen}>經典文學</SectionTitle>
-      <p className="section-intro">整理各篇經典的用途、驗收或吟誦時機，以及在家練習資源；內容會持續增補。</p>
+      <p className="section-intro">查看背誦與吟誦安排，陪孩子一起在家練習。</p>
       <div className="classics-list">{items.map(c=><article className="classic-item" key={c.id}>
         <div className="classic-head"><h3>{c.title}</h3><OccasionTag tone={c.tone}>{c.occasion}</OccasionTag></div>
         <p>{c.note}</p>
@@ -236,12 +236,12 @@ function SchoolAffairsPage({d,ctx,path}){
   return <><PageHeader title={`${d.label}學校事務`} description="用品、服裝、購買、接送與校園活動資訊"/>
     <nav className="school-tabs" aria-label="學校事務分類">{schoolSections.map(([id,name,TabIcon])=><a href={withCtx(`/school/${id}`,ctx)} className={key===id?'selected':''} key={id}><TabIcon/><span>{name}</span></a>)}</nav>
     <div className="affairs-layout"><section className="affairs-content"><SectionTitle icon={Icon}>{label}</SectionTitle>{key==='book-covers'?<><p className="context-note">這份是 114 學年度菁英班低年級整理資料。115 學年度教材可能調整，購買前請核對實體書本。</p><div className="reference-table"><div className="reference-head"><strong>科目</strong><strong>書目</strong><strong>參考尺寸</strong></div>{bookCovers.map(([subject,book,size])=><div key={subject+book}><span>{subject}</span><span>{book}</span><strong>{size}</strong></div>)}</div><div className="reference-meta"><time>參考日期：114學年度</time><strong>活動／文件：菁英班書套尺寸參考</strong><Source>小鈴噹群組熱心家長整理</Source></div></>:<SchoolRows rows={rows} Icon={Icon}/>}<MediaReferences items={schoolOriginals[key]||[]}/></section>
-      <aside className="affairs-aside"><h2>學校事務分類</h2>{schoolSections.map(([id,name,AsideIcon])=><a href={withCtx(`/school/${id}`,ctx)} className={key===id?'selected':''} key={id}><AsideIcon/><span>{name}</span><CaretRight/></a>)}<p><Leaf/>資料會依通知持續整理，舊學年度內容均標示為參考。</p></aside>
+      <aside className="affairs-aside"><h2>學校事務分類</h2>{schoolSections.map(([id,name,AsideIcon])=><a href={withCtx(`/school/${id}`,ctx)} className={key===id?'selected':''} key={id}><AsideIcon/><span>{name}</span><CaretRight/></a>)}<p><Leaf/>舊學年度資料僅供參考，請以學校最新通知為準。</p></aside>
     </div>
   </>;
 }
 
-function NoticesPage({d,ctx}){return <><PageHeader title={`${d.label}班級公告`} description={ctx.kind==='class'?'包含一年級共通與班級專屬通知':'依發布日期排列，保留來源與更新時間'}/><section><SectionTitle icon={Megaphone}>最新通知</SectionTitle><div className="notice-list">{d.notices.toReversed().map(item=><article key={item.id}><time>{item.date}</time><div><h3>{item.title}</h3><Source>{item.source}</Source></div></article>)}</div></section></>}
+function NoticesPage({d}){return <><PageHeader title={`${d.label}班級公告`} description="查看最新通知與重要提醒"/><section><SectionTitle icon={Megaphone}>最新通知</SectionTitle><div className="notice-list">{d.notices.toReversed().map(item=><article key={item.id}><time>{item.date}</time><div><h3>{item.title}</h3><Source>{item.source}</Source></div></article>)}</div></section></>}
 
 function NotFoundPage(){return <section className="notfound"><h1>查無此頁</h1><p>這個網址沒有對應的內容，可能是連結有誤或內容已更新。</p><a className="outline-button" href={defaultClassForHost(location.hostname)?`${COMMON_ORIGIN}/`:'#/'}><House/>回到共通首頁</a></section>}
 
