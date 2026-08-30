@@ -48,7 +48,7 @@ function eventLines(ev,dtstamp){
     `DTEND;VALUE=DATE:${plusDayCompact(ev.end)}`,
     `SUMMARY:${esc(ev.title)}`,
     `DESCRIPTION:${esc(desc)}`,
-    'SEQUENCE:0',
+    `SEQUENCE:${ev.sequence??0}`,
     'STATUS:CONFIRMED',
     'TRANSP:TRANSPARENT',
     'END:VEVENT'
