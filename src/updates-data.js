@@ -2,6 +2,7 @@ import {commonPortal, classPortals} from './portal-data.js';
 
 // 更新日期來自已核對的發布紀錄，與活動日期分開；同一內容用相同 contentId。
 export const updates = [
+  {id:'textbooks-20260831',contentId:'textbooks-115',scope:'common',updatedAt:'2026-08-31',category:'學習資訊',type:'新增',title:'各年級課本版本',summary:'查看 115 學年度國語、數學、生活、自然與社會版本。',path:'/learning'},
   {id:'pickup-pass-20260831',contentId:'pickup-pass',scope:'common',updatedAt:'2026-08-31',category:'校務通知',type:'新增',noticeId:'wego-pickup-pass-reissue-115s1',summary:'8/31–9/2 受理，9/7 起依序發放。'},
   {id:'calendar-20260830',contentId:'calendar-115s1',scope:'common',updatedAt:'2026-08-30',category:'日期行程',type:'補充',title:'第一學期行事曆補齊',summary:'查看活動、繳費與假日安排。',path:'/calendar'},
   {id:'links-20260830',contentId:'parent-links',scope:'common',updatedAt:'2026-08-30',category:'常用連結',type:'新增',title:'家長常用連結整理',summary:'校務與語言學習入口集中查找。',path:'/links'},

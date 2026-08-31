@@ -17,6 +17,7 @@ import TimetablePage from './TimetablePage.jsx';
 import HomeworkPage from './HomeworkPage.jsx';
 import {classHomework} from './homework-data.js';
 import {classTimetables} from './timetable-data.js';
+import {textbookVersions115} from './textbook-data.js';
 import {COMMON_ORIGIN, defaultClassForHost, routeForLocation, contextualHref} from './routing.js';
 
 const UPDATED='2026年8月31日';
@@ -168,6 +169,21 @@ function CalendarPage({d,ctx}){
 
 function OccasionTag({tone,children}){const Icon=tone==='graduation'?GraduationCap:Sun;return <span className={`occasion occasion-${tone}`}><Icon weight="fill"/>{children}</span>}
 
+function TextbookVersions(){
+  const cell=(row,key)=>row[key]?<span className={row.emphasized?.includes(key)?'textbook-emphasis':undefined}>{row[key]}</span>:<span className="not-applicable" aria-label="不適用">—</span>;
+  return <section className="textbook-section">
+    <SectionTitle icon={BookOpen}>115 學年度各年級課本版本</SectionTitle>
+    <p className="section-intro">低年級使用「生活」課本；三至六年級則使用「自然」與「社會」課本。</p>
+    <div className="textbook-table-wrap">
+      <table className="textbook-table">
+        <thead><tr><th scope="col">年級</th><th scope="col">國語</th><th scope="col">數學</th><th scope="col">生活</th><th scope="col">自然</th><th scope="col">社會</th></tr></thead>
+        <tbody>{textbookVersions115.map(row=><tr key={row.grade}><th scope="row">{row.grade}</th><td>{cell(row,'chinese')}</td><td>{cell(row,'math')}</td><td>{cell(row,'life')}</td><td>{cell(row,'science')}</td><td>{cell(row,'social')}</td></tr>)}</tbody>
+      </table>
+    </div>
+    <div className="textbook-source"><time>適用學年度：115 學年度</time><Source>學校教務相關 Q&amp;A</Source></div>
+  </section>;
+}
+
 function LearningPage({d,ctx}){
   const isClass=ctx.kind==='class';
   const items=classics.filter(c=>isClass||c.scope!=='class');
@@ -178,6 +194,7 @@ function LearningPage({d,ctx}){
       <SectionTitle icon={BookOpen}>近期考試與評量</SectionTitle>
       <div className="simple-table">{d.exams.map(item=><div key={item.id}><time>{item.date}</time><strong>{item.title}</strong><Source>{item.source}</Source></div>)}</div>
     </section>
+    <TextbookVersions/>
     <section className="classics-section">
       <SectionTitle icon={BookOpen}>經典文學</SectionTitle>
       <p className="section-intro">查看背誦與吟誦安排，陪孩子一起在家練習。</p>
