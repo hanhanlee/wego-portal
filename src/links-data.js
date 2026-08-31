@@ -1,6 +1,7 @@
 // 家長提供的共通常用入口；只保存公開網址與去識別化說明，不保存登入資料。
 export const linkGroups = [
   {id:'school', title:'學校與家長服務', items:[
+    {id:'bus-gps', title:'校車 GPS 追蹤', href:'https://kweb.wgps.tp.edu.tw/newborn/stu_schoolBus_Map.asp', description:'前往校方校車 GPS 追蹤頁面；使用方式與查詢條件請依校方頁面指示。', access:'依校方頁面指示'},
     {id:'website', title:'學校官網', href:'https://esweb.wgps.tp.edu.tw/nss/p/index', description:'學校公告、校務資訊與最新消息。', access:'公開瀏覽'},
     {id:'parents', title:'家長專區', href:'https://esweb.wgps.tp.edu.tw/nss/p/7000', description:'校方彙整的家長服務入口；各項服務依頁面指示登入。', access:'依服務登入'},
     {id:'student', title:'學生資訊查詢', href:'https://www.wgps.tp.edu.tw/registered/stu_ldap_index.asp', description:'查詢學號、校內 Google 帳號等學生資訊。', access:'依校方驗證'},
