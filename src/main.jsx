@@ -13,7 +13,7 @@ import TimetablePage from './TimetablePage.jsx';
 import {classTimetables} from './timetable-data.js';
 import {COMMON_ORIGIN, defaultClassForHost, routeForLocation, contextualHref} from './routing.js';
 
-const UPDATED='2026年8月30日';
+const UPDATED='2026年8月31日';
 const COMMON_TITLE='Wego小一小鈴鐺資訊站';
 const nav=[
   ['/','首頁',House],
@@ -147,7 +147,7 @@ function HomePage({d,ctx}){
     </section>
     <TimetableEntry ctx={ctx}/>
     <a className="home-links-entry" href={withCtx('/links',ctx)}><BookOpen weight="duotone"/><div><strong>家長常用連結</strong><span>學校官網、校車異動、語言學習與文件下載</span></div><CaretRight/></a>
-    <section className="update-band"><Clock/><strong>最新更新</strong><span>{isClass&&classTimetables[ctx.slug]?'新增一忠班級課表、家長常用連結與校車異動注意事項。':'新增家長常用連結與校車異動注意事項。'}</span></section>
+    <section className="update-band"><Clock/><strong>最新更新</strong><span>新增車家接證補發申請：8/31–9/2 受理，9/7（週一）起依申請次序分批發放。</span></section>
   </>;
 }
 
@@ -241,7 +241,7 @@ function SchoolAffairsPage({d,ctx,path}){
   </>;
 }
 
-function NoticesPage({d}){return <><PageHeader title={`${d.label}班級公告`} description="查看最新通知與重要提醒"/><section><SectionTitle icon={Megaphone}>最新通知</SectionTitle><div className="notice-list">{d.notices.toReversed().map(item=><article key={item.id}><time>{item.date}</time><div><h3>{item.title}</h3><Source>{item.source}</Source></div></article>)}</div></section></>}
+function NoticesPage({d}){return <><PageHeader title={`${d.label}班級公告`} description="查看最新通知與重要提醒"/><section><SectionTitle icon={Megaphone}>最新通知</SectionTitle><div className="notice-list">{d.notices.toReversed().map(item=><article key={item.id}><time>{item.date}</time><div><h3>{item.title}</h3>{item.paragraphs?.map(paragraph=><p key={paragraph}>{paragraph}</p>)}{item.link?<a className="outline-button" href={item.link.url} target="_blank" rel="noopener noreferrer">{item.link.label}</a>:null}<Source>{item.source}</Source></div></article>)}</div></section></>}
 
 function NotFoundPage(){return <section className="notfound"><h1>查無此頁</h1><p>這個網址沒有對應的內容，可能是連結有誤或內容已更新。</p><a className="outline-button" href={defaultClassForHost(location.hostname)?`${COMMON_ORIGIN}/`:'#/'}><House/>回到共通首頁</a></section>}
 
