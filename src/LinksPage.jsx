@@ -2,10 +2,10 @@ import React from 'react';
 import {ArrowUpRight, Link as LinkIcon, ShieldCheck, Bus} from '@phosphor-icons/react';
 import {linkGroups, busNotes} from './links-data.js';
 
-export default function LinksPage({updated}) {
+export default function LinksPage({updated,busOnly=false}) {
   return <>
-    <div className="page-header"><div><h1>家長常用連結</h1><p>校務查詢、學習資源與常用文件，一處找到。</p></div><time>內容最後更新：{updated}</time></div>
-    <aside className="links-account" aria-label="登入與個資提醒">
+    <div className="page-header"><div><h1>{busOnly?'校車異動注意事項':'家長常用連結'}</h1><p>校務查詢、學習資源與常用文件，一處找到。</p></div><time>內容最後更新：{updated}</time></div>
+    {!busOnly?<><aside className="links-account" aria-label="登入與個資提醒">
       <ShieldCheck weight="duotone"/>
       <div><h2>開啟前，先確認登入帳號</h2><p>校內 Google 帳號格式為「學號@wgps.tp.edu.tw」。學號與帳號可由下方「學生資訊查詢」取得；家長登入與學生 Google 帳號可能不同，請依各系統的校方說明操作。</p><p>密碼請查看校方通知或洽學校協助。本站不收集、儲存帳號密碼或孩子的身分資料。所有外部連結均另開分頁。</p></div>
     </aside>
@@ -17,6 +17,7 @@ export default function LinksPage({updated}) {
         <span className="resource-domain">{new URL(item.href).hostname}</span>
       </article>)}</div>
     </section>)}</div>
+    </>:null}
     <section className="bus-notes" aria-labelledby="bus-notes-title">
       <h2 className="section-title" id="bus-notes-title"><Bus/>校車異動：送出前請留意</h2>
       <p className="section-intro">申請前請留意截止時間與聯絡方式；費用及規則請以校車系統最新公告為準。</p>

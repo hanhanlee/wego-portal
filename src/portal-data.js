@@ -9,7 +9,7 @@ export const commonPortal={
   ],
   notices:[
     {id:'wego-open-notice-115s1',date:'8/31',title:'第一學期開學',source:'學校行事曆',start:'2026-08-31'},
-    {id:'wego-pickup-pass-reissue-115s1',date:'8/31–9/2',title:'車家接證補發申請',source:'薇閣小學學務處',start:'2026-08-31',
+    {id:'wego-pickup-pass-reissue-115s1',expiresOn:'2026-09-02',date:'8/31–9/2',title:'車家接證補發申請',source:'薇閣小學學務處',start:'2026-08-31',
       paragraphs:[
         '申請期間：2026 年 8 月 31 日至 9 月 2 日。除乘坐校車的同學外，若有車家接證需求，請家長協助填寫申請表單。',
         '學務處將審核並確認車家接使用狀況，予以補發；9 月 7 日（週一）起依申請次序分批發放。',

@@ -6,6 +6,10 @@ import {
   Package, Buildings, ShieldCheck, TShirt, ShoppingBag, Car, PlayCircle, GraduationCap, Sun
 } from '@phosphor-icons/react';
 import './styles.css';
+import './home.css';
+import HomePage from './HomePage.jsx';
+import Navigation from './Navigation.jsx';
+import NoticesPage from './NoticesPage.jsx';
 import {buildCalendar} from './ics.js';
 import {classPortals, resolvePortalData} from './portal-data.js';
 import LinksPage from './LinksPage.jsx';
@@ -17,14 +21,7 @@ import {COMMON_ORIGIN, defaultClassForHost, routeForLocation, contextualHref} fr
 
 const UPDATED='2026年8月31日';
 const COMMON_TITLE='Wego小一小鈴鐺資訊站';
-const nav=[
-  ['/','首頁',House],
-  ['/calendar','日期行程',CalendarDots],
-  ['/learning','學習成長',BookOpen],
-  ['/school','學校事務',Buildings],
-  ['/notices','班級公告',Megaphone],
-  ['/links','常用連結',BookOpen]
-];
+
 
 const pencilImages=[
   ['/assets/class1/pencil-grip/grip-overview.jpg','正確握筆姿勢：虎口、手腕、三點抓握、三指分開及筆尖方向'],
@@ -135,26 +132,6 @@ function HomeworkEntry({ctx}){const homework=ctx.kind==='class'?classHomework[ct
 function SectionTitle({icon:Icon,children}){return <h2 className="section-title"><Icon/>{children}</h2>}
 function MediaReferences({items}){return <section className="media-references" aria-label="原始資料與外部資源"><div><h2>原始資料與延伸資源</h2><p>摘要方便快速閱讀；需要核對細節時，可開啟原圖或原始連結。</p></div><div className="media-strip">{items.map(item=>item.src?<a href={item.src} target="_blank" rel="noreferrer" className="media-card" key={item.src}><img src={item.src} alt={item.title} loading="lazy"/><span><strong>{item.title}</strong><small>{item.meta}</small></span><CaretRight/></a>:<a href={item.href} target="_blank" rel="noreferrer" className="media-card external" key={item.href}><span className="external-icon"><BookOpen/></span><span><strong>{item.title}</strong><small>{item.meta}</small></span><CaretRight/></a>)}</div></section>}
 
-function HomePage({d,ctx}){
-  const isClass=ctx.kind==='class';
-  return <>
-    <section className="home-intro">
-      <div className="welcome-copy">{!isClass&&<Bell className="welcome-bell" weight="duotone" aria-hidden="true"/>}<h1>{isClass?`${d.label}班級資訊`:COMMON_TITLE}</h1><p>{isClass?'查看班級行程、每週課表與生活提醒。':'整理一年級共通的學校行程、學習提醒與生活資訊，陪家長一起從容準備每一天。'}</p><time>內容最後更新：{UPDATED}</time></div>
-      <div className="recent-panel"><h2>近期重要事項</h2>{d.events.slice(0,3).map(ev=><a href={withCtx('/calendar',ctx)} className="recent-row" key={ev.uid}><time>{ev.d}</time><div><strong>{ev.title}</strong>{ev.detail&&<span>{ev.detail}</span>}<Source>{ev.source}</Source></div><CaretRight/></a>)}</div>
-    </section>
-    <section className="portal-directory" aria-label="資訊分類">
-      <a href={withCtx('/calendar',ctx)}><span className="directory-icon"><CalendarDots weight="duotone"/></span><h2>日期行程</h2><p>學校與班級的重要日期</p><ul>{d.events.slice(0,3).map(ev=><li key={ev.uid}><time>{ev.d}</time>{ev.title}</li>)}</ul><CaretRight className="directory-arrow"/></a>
-      <a href={withCtx('/learning',ctx)}><span className="directory-icon"><BookOpen weight="duotone"/></span><h2>學習成長</h2><p>考試、評量與學習參考</p><ul><li>近期評量與範圍</li><li>學習資源整理</li><li>學習建議與指引</li></ul><CaretRight className="directory-arrow"/></a>
-      <a href={withCtx('/school',ctx)}><span className="directory-icon"><Buildings weight="duotone"/></span><h2>學校事務</h2><p>用品、服裝、購買與接送</p><div className="topic-preview"><span><Package/>用品</span><span><TShirt/>制服</span><span><ShoppingBag/>加購</span><span><Bus/>接送</span><span><Car/>停車</span></div><CaretRight className="directory-arrow"/></a>
-      <a href={withCtx('/notices',ctx)}><span className="directory-icon"><Megaphone weight="duotone"/></span><h2>班級公告</h2><p>最新通知與資訊更正</p><ul>{d.notices.slice(-3).toReversed().map(item=><li key={item.id}>{item.title}</li>)}</ul><CaretRight className="directory-arrow"/></a>
-    </section>
-    <TimetableEntry ctx={ctx}/>
-    <HomeworkEntry ctx={ctx}/>
-    <a className="home-links-entry" href={withCtx('/links',ctx)}><BookOpen weight="duotone"/><div><strong>家長常用連結</strong><span>學校官網、校車異動、語言學習與文件下載</span></div><CaretRight/></a>
-    <section className="update-band"><Clock/><strong>最新更新</strong><span>{isClass&&classHomework[ctx.slug]?'新增 8/31–9/18 英文作業與原圖；車家接證補發申請至 9/2。':'新增車家接證補發申請：8/31–9/2 受理，9/7（週一）起依申請次序分批發放。'}</span></section>
-  </>;
-}
-
 function feedUrls(ctx){
   const base=import.meta.env.BASE_URL||'/';
   const file=ctx.kind==='class'?`class-${ctx.slug}.ics`:'wego-common.ics';
@@ -197,7 +174,6 @@ function LearningPage({d,ctx}){
   return <>
     <PageHeader title={`${d.label}學習成長`} description="考試、評量與學習參考"/>
     <HomeworkEntry ctx={ctx}/>
-    <TimetableEntry ctx={ctx}/>
     <section>
       <SectionTitle icon={BookOpen}>近期考試與評量</SectionTitle>
       <div className="simple-table">{d.exams.map(item=><div key={item.id}><time>{item.date}</time><strong>{item.title}</strong><Source>{item.source}</Source></div>)}</div>
@@ -246,8 +222,6 @@ function SchoolAffairsPage({d,ctx,path}){
   </>;
 }
 
-function NoticesPage({d}){return <><PageHeader title={`${d.label}班級公告`} description="查看最新通知與重要提醒"/><section><SectionTitle icon={Megaphone}>最新通知</SectionTitle><div className="notice-list">{d.notices.toReversed().map(item=><article key={item.id}><time>{item.date}</time><div><h3>{item.title}</h3>{item.paragraphs?.map(paragraph=><p key={paragraph}>{paragraph}</p>)}{item.link?<a className="outline-button" href={item.link.url} target="_blank" rel="noopener noreferrer">{item.link.label}</a>:null}<Source>{item.source}</Source></div></article>)}</div></section></>}
-
 function NotFoundPage(){return <section className="notfound"><h1>查無此頁</h1><p>這個網址沒有對應的內容，可能是連結有誤或內容已更新。</p><a className="outline-button" href={defaultClassForHost(location.hostname)?`${COMMON_ORIGIN}/`:'#/'}><House/>回到共通首頁</a></section>}
 
 function App(){
@@ -265,24 +239,27 @@ function App(){
 
   let page;
   if(notfound) page=<NotFoundPage/>;
-  else if(path==='/') page=<HomePage d={d} ctx={ctx}/>;
+  else if(path==='/') page=<HomePage d={d} ctx={ctx} updated={UPDATED}/>;
   else if(path==='/calendar') page=<CalendarPage d={d} ctx={ctx}/>;
+  else if(path.startsWith('/calendar/')) {const event=d.events.find(e=>e.uid===path.slice(10));page=event?<><PageHeader title={event.title} description={event.d}/><article className="notice-detail"><p>{event.detail}</p><Source>{event.source}</Source><button className="outline-button" onClick={()=>addSingleEvent(event)}>加入這筆行程</button></article><a className="text-link" href={withCtx('/calendar',ctx)}>查看完整行事曆</a></>:<NotFoundPage/>;}
   else if(path==='/learning') page=<LearningPage d={d} ctx={ctx}/>;
   else if(path.startsWith('/school')) page=<SchoolAffairsPage d={d} ctx={ctx} path={path}/>;
-  else if(path==='/notices') page=<NoticesPage d={d} ctx={ctx}/>;
+  else if(path==='/notices') page=<NoticesPage d={d} ctx={ctx} updated={UPDATED}/>;
+  else if(path.startsWith('/notices/')) {const notice=d.notices.find(n=>n.id===path.slice(9));page=notice?<NoticesPage d={d} ctx={ctx} updated={UPDATED} notice={notice}/>:<NotFoundPage/>;}
+  else if(path==='/links/bus') page=<LinksPage updated={UPDATED} busOnly/>;
   else if(path==='/links') page=<LinksPage updated={UPDATED}/>;
   else if(path==='/homework') page=ctx.kind==='class'&&classHomework[ctx.slug]?<HomeworkPage homework={classHomework[ctx.slug]} updated={UPDATED}/>:<NotFoundPage/>;
   else if(path==='/timetable') page=ctx.kind==='class'&&classTimetables[ctx.slug]?<TimetablePage timetable={classTimetables[ctx.slug]} updated={UPDATED}/>:<NotFoundPage/>;
-  else page=<HomePage d={d} ctx={ctx}/>;
+  else page=<NotFoundPage/>;
 
-  const activePath=path==='/homework'?'/learning':path==='/timetable'?'/calendar':path.startsWith('/school')?'/school':path;
+  const activePath=path==='/homework'?'/learning':path==='/timetable'?'/calendar':path.startsWith('/school')?'/school':path.startsWith('/notices')?'/notices':path.startsWith('/calendar')?'/calendar':path.startsWith('/links')?'/links':path;
   return <div className={ctx.kind==='common'?'common-site':'class-site'}>
     <header className="site-header">
       <a className="brand" href={withCtx('/',ctx)}>{ctx.kind==='common'?<Bell className="brand-bell" weight="duotone"/>:<Leaf weight="duotone"/>}{ctx.kind==='common'?COMMON_TITLE:'薇閣小一資料站'}{ctx.kind==='class'&&<span className="class-badge">{ctx.label}</span>}</a>
-      <nav aria-label="主要導覽">{nav.map(([p,label,NavIcon])=><a key={p} href={withCtx(p,ctx)} className={activePath===p?'active':''}><NavIcon/><span>{label}</span></a>)}</nav>
+      <Navigation ctx={ctx} activePath={activePath}/>
     </header>
-    <main key={`${classSlug||'common'}:${path}`}>{page}</main>
-    <footer><nav>{nav.map(([p,label])=><a href={withCtx(p,ctx)} key={p}>{label}</a>)}</nav><p><ShieldCheck/>本站為家長整理資訊，請以學校與導師最新通知為準。</p><small>內容最後更新：{UPDATED}</small></footer>
+    <main className={path==='/'&&!notfound?'home-main':undefined} key={`${classSlug||'common'}:${path}`}>{page}</main>
+    <footer className="simple-footer"><p><ShieldCheck aria-hidden="true"/>本站為家長整理資訊，請以學校與導師最新通知為準。</p></footer>
   </div>;
 }
 
