@@ -1,0 +1,4 @@
+# Allow crawling so search engines can read the noindex meta tag and HTTP header.
+# Indexing is disabled by index.html and the global X-Robots-Tag in vercel.json.
+User-agent: *
+Allow: /

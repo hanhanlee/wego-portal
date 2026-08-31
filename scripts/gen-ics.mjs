@@ -11,7 +11,7 @@ const outDir=resolve(here,'../public/calendar');
 mkdirSync(outDir,{recursive:true});
 
 // 內容更新時手動調整這個時間戳（並保留各事件 uid），訂閱端便會辨識為更新。
-const DTSTAMP='20260830T143051Z';
+const DTSTAMP='20260831T120000Z';
 
 const write=(file,events,name)=>{
   writeFileSync(resolve(outDir,file), buildCalendar(events,{name,dtstamp:DTSTAMP}), 'utf8');

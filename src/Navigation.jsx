@@ -1,12 +1,14 @@
 import React,{useEffect,useRef,useState} from 'react';
-import {House,CalendarDots,BookOpen,Buildings,Megaphone,DotsThree,X,CaretRight} from '@phosphor-icons/react';
+import {House,CalendarDots,BookOpen,Buildings,Megaphone,DotsThree,X,CaretRight,ChatText} from '@phosphor-icons/react';
 import {contextualHref} from './routing.js';
+import {classTeacherNotes} from './teacher-notes-data.js';
 
 const links=[['/','首頁',House],['/calendar','日期行程',CalendarDots],['/learning','學習成長',BookOpen],['/school','學校事務',Buildings],['/notices','通知公告',Megaphone],['/links','常用連結',BookOpen]];
 export default function Navigation({ctx,activePath}) {
   const dialog=useRef(null),trigger=useRef(null),pendingHref=useRef(null);
   const [open,setOpen]=useState(false);
   const href=path=>contextualHref(path,ctx,location.hostname);
+  const moreLinks=[...(ctx.kind==='class'&&classTeacherNotes[ctx.slug]?[['/teacher-notes','導師聯絡事項',ChatText]]:[]),...links.slice(3)];
   const moreActive=links.slice(3).some(([path])=>path===activePath);
   function dismiss(destination=null) {
     pendingHref.current=destination;
@@ -45,7 +47,7 @@ export default function Navigation({ctx,activePath}) {
     </nav>
     <dialog ref={dialog} className="more-dialog" id="more-navigation" aria-labelledby="more-title" onKeyDown={event=>{if(event.key==='Escape'){event.preventDefault();dismiss();}}} onCancel={event=>{event.preventDefault();dismiss();}} onClose={()=>{setOpen(false);trigger.current?.focus();}} onClick={event=>{if(event.target===event.currentTarget) dismiss();}}>
       <div className="more-sheet"><div className="more-heading"><h2 id="more-title">更多</h2><button type="button" aria-label="關閉更多選單" onClick={()=>dismiss()}><X/></button></div>
-        <nav aria-label="更多頁面">{links.slice(3).map(([path,label,Icon])=><a key={path} href={href(path)} aria-current={activePath===path?'page':undefined} onClick={event=>{if(!event.ctrlKey&&!event.metaKey&&!event.shiftKey&&!event.altKey){event.preventDefault();dismiss(href(path));}}}><Icon aria-hidden="true"/><span>{label}</span><CaretRight aria-hidden="true"/></a>)}</nav>
+        <nav aria-label="更多頁面">{moreLinks.map(([path,label,Icon])=><a key={path} href={href(path)} aria-current={activePath===path?'page':undefined} onClick={event=>{if(!event.ctrlKey&&!event.metaKey&&!event.shiftKey&&!event.altKey){event.preventDefault();dismiss(href(path));}}}><Icon aria-hidden="true"/><span>{label}</span><CaretRight aria-hidden="true"/></a>)}</nav>
       </div>
     </dialog>
   </>;

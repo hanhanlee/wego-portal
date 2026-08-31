@@ -1,6 +1,9 @@
 export const classHomework = {
   vwej3: {
     title: '一忠英文作業',
+    periods: [{
+    id: '2026-08-31-1a',
+    note: '已更正為 1A 版本。',
     period: '2026/8/31–9/18',
     image: 'assets/class1/homework/2026-08-31-1a.jpg',
     source: 'Weekly Homework（1A）',
@@ -27,5 +30,6 @@ export const classHomework = {
         {date: '2026-09-18', label: '9/18（五）', items: ['Review E p.21', '背 SW：they, we, and, your', '簽 U1 SW 1–4 Quiz／U1 SW 5–8 Quiz／U1 Quiz', 'Review PR p.5–14', '學生選一本英文讀物回家閱讀']}
       ]}
     ]
+    }]
   }
 };

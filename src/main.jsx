@@ -8,6 +8,8 @@ import {
 import './styles.css';
 import './home.css';
 import HomePage from './HomePage.jsx';
+import TeacherNotesPage from './TeacherNotesPage.jsx';
+import {classTeacherNotes} from './teacher-notes-data.js';
 import Navigation from './Navigation.jsx';
 import NoticesPage from './NoticesPage.jsx';
 import {buildCalendar} from './ics.js';
@@ -129,7 +131,7 @@ function withCtx(path,ctx){
 function Source({children}){return <small className="source">來源：{children}</small>}
 function TimetableEntry({ctx}){return ctx.kind==='class'&&classTimetables[ctx.slug]?<a className="home-links-entry" href={withCtx('/timetable',ctx)}><CalendarDots weight="duotone"/><div><strong>班級課表</strong><span>115 學年度第 1 學期・每週課程與作息</span></div><CaretRight/></a>:null}
 function PageHeader({title,description}){return <div className="page-header"><div><h1>{title}</h1>{description&&<p>{description}</p>}</div><time>內容最後更新：{UPDATED}</time></div>}
-function HomeworkEntry({ctx}){const homework=ctx.kind==='class'?classHomework[ctx.slug]:null;return homework?<a className="home-links-entry" href={withCtx('/homework',ctx)}><BookOpen weight="duotone"/><div><strong>英文作業</strong><span>{homework.period}・每週複習、單字與測驗提醒</span></div><CaretRight/></a>:null}
+function HomeworkEntry({ctx}){const homework=ctx.kind==='class'?classHomework[ctx.slug]:null;return homework?<a className="home-links-entry" href={withCtx('/homework',ctx)}><BookOpen weight="duotone"/><div><strong>英文作業</strong><span>依年月查閱作業與原圖・複習、單字與測驗提醒</span></div><CaretRight/></a>:null}
 function SectionTitle({icon:Icon,children}){return <h2 className="section-title"><Icon/>{children}</h2>}
 function MediaReferences({items}){return <section className="media-references" aria-label="原始資料與外部資源"><div><h2>原始資料與延伸資源</h2><p>摘要方便快速閱讀；需要核對細節時，可開啟原圖或原始連結。</p></div><div className="media-strip">{items.map(item=>item.src?<a href={item.src} target="_blank" rel="noreferrer" className="media-card" key={item.src}><img src={item.src} alt={item.title} loading="lazy"/><span><strong>{item.title}</strong><small>{item.meta}</small></span><CaretRight/></a>:<a href={item.href} target="_blank" rel="noreferrer" className="media-card external" key={item.href}><span className="external-icon"><BookOpen/></span><span><strong>{item.title}</strong><small>{item.meta}</small></span><CaretRight/></a>)}</div></section>}
 
@@ -265,11 +267,12 @@ function App(){
   else if(path.startsWith('/notices/')) {const notice=d.notices.find(n=>n.id===path.slice(9));page=notice?<NoticesPage d={d} ctx={ctx} updated={UPDATED} notice={notice}/>:<NotFoundPage/>;}
   else if(path==='/links/bus') page=<LinksPage updated={UPDATED} busOnly/>;
   else if(path==='/links') page=<LinksPage updated={UPDATED}/>;
-  else if(path==='/homework') page=ctx.kind==='class'&&classHomework[ctx.slug]?<HomeworkPage homework={classHomework[ctx.slug]} updated={UPDATED}/>:<NotFoundPage/>;
+  else if(path==='/teacher-notes') page=ctx.kind==='class'&&classTeacherNotes[ctx.slug]?<TeacherNotesPage notes={classTeacherNotes[ctx.slug]} ctx={ctx}/>:<NotFoundPage/>;
+  else if(path==='/homework') page=ctx.kind==='class'&&classHomework[ctx.slug]?<HomeworkPage homework={classHomework[ctx.slug]} updated={UPDATED} ctx={ctx}/>:<NotFoundPage/>;
   else if(path==='/timetable') page=ctx.kind==='class'&&classTimetables[ctx.slug]?<TimetablePage timetable={classTimetables[ctx.slug]} updated={UPDATED}/>:<NotFoundPage/>;
   else page=<NotFoundPage/>;
 
-  const activePath=path==='/homework'?'/learning':path==='/timetable'?'/calendar':path.startsWith('/school')?'/school':path.startsWith('/notices')?'/notices':path.startsWith('/calendar')?'/calendar':path.startsWith('/links')?'/links':path;
+  const activePath=path==='/teacher-notes'?'/notices':path==='/homework'?'/learning':path==='/timetable'?'/calendar':path.startsWith('/school')?'/school':path.startsWith('/notices')?'/notices':path.startsWith('/calendar')?'/calendar':path.startsWith('/links')?'/links':path;
   return <div className={ctx.kind==='common'?'common-site':'class-site'}>
     <header className="site-header">
       <a className="brand" href={withCtx('/',ctx)}>{ctx.kind==='common'?<Bell className="brand-bell" weight="duotone"/>:<Leaf weight="duotone"/>}{ctx.kind==='common'?COMMON_TITLE:'薇閣小一資料站'}{ctx.kind==='class'&&<span className="class-badge">{ctx.label}</span>}</a>
