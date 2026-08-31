@@ -8,6 +8,7 @@ import {
 import './styles.css';
 import './home.css';
 import HomePage from './HomePage.jsx';
+import CalendarPage from './CalendarPage.jsx';
 import TeacherNotesPage from './TeacherNotesPage.jsx';
 import {classTeacherNotes} from './teacher-notes-data.js';
 import Navigation from './Navigation.jsx';
@@ -149,26 +150,6 @@ function addSingleEvent(ev){
   a.href=URL.createObjectURL(new Blob([ics],{type:'text/calendar'}));
   a.download=`${ev.uid}.ics`;a.click();URL.revokeObjectURL(a.href);
 }
-function CalendarPage({d,ctx}){
-  const {https,webcal,google}=feedUrls(ctx);
-  return <>
-    <PageHeader title={`${d.label}日期行程`} description="依日期查看學校與班級事項"/>
-    <TimetableEntry ctx={ctx}/>
-    <section className="subscribe-panel">
-      <div className="subscribe-copy"><h2><CalendarDots weight="duotone"/>訂閱整學期行事曆</h2><p>訂閱一次即可。之後我們更新日期或新增事件，你的行事曆會自動同步，不必重新匯入（Apple 通常數十分鐘內、Google 可能延遲數小時；緊急更正仍以網站公告為準）。</p></div>
-      <div className="subscribe-actions">
-        <a className="primary-button" href={webcal}><CalendarDots/>iPhone / Mac 訂閱</a>
-        <a className="outline-button" href={google} target="_blank" rel="noreferrer"><CalendarDots/>Google 日曆訂閱</a>
-      </div>
-      <label className="subscribe-url"><span>訂閱網址（可複製手動加入）</span><input type="text" readOnly value={https} onFocus={e=>e.target.select()}/></label>
-    </section>
-    <section>
-      <SectionTitle icon={CalendarDots}>重要日期</SectionTitle>
-      <div className="event-list">{d.events.map(ev=><article key={ev.uid}><time>{ev.d}</time><div><h3>{ev.title}</h3>{ev.detail&&<p>{ev.detail}</p>}<Source>{ev.source}</Source><button type="button" className="add-one" onClick={()=>addSingleEvent(ev)}><CalendarDots/>只加入這一筆</button></div></article>)}</div>
-    </section>
-  </>;
-}
-
 function OccasionTag({tone,children}){const Icon=tone==='graduation'?GraduationCap:Sun;return <span className={`occasion occasion-${tone}`}><Icon weight="fill"/>{children}</span>}
 
 function TextbookVersions(){
@@ -259,7 +240,7 @@ function App(){
   let page;
   if(notfound) page=<NotFoundPage/>;
   else if(path==='/') page=<HomePage d={d} ctx={ctx} updated={UPDATED}/>;
-  else if(path==='/calendar') page=<CalendarPage d={d} ctx={ctx}/>;
+  else if(path==='/calendar') page=<CalendarPage d={d} ctx={ctx} feeds={feedUrls(ctx)} addEvent={addSingleEvent} updated={UPDATED}/>;
   else if(path.startsWith('/calendar/')) {const event=d.events.find(e=>e.uid===path.slice(10));page=event?<><PageHeader title={event.title} description={event.d}/><article className="notice-detail"><p>{event.detail}</p><Source>{event.source}</Source><button className="outline-button" onClick={()=>addSingleEvent(event)}>加入這筆行程</button></article><a className="text-link" href={withCtx('/calendar',ctx)}>查看完整行事曆</a></>:<NotFoundPage/>;}
   else if(path==='/learning') page=<LearningPage d={d} ctx={ctx}/>;
   else if(path.startsWith('/school')) page=<SchoolAffairsPage d={d} ctx={ctx} path={path}/>;

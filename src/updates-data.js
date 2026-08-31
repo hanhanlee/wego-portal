@@ -6,7 +6,7 @@ export const updates = [
   {id:'textbooks-20260831',contentId:'textbooks-115',scope:'common',updatedAt:'2026-08-31',category:'學習資訊',type:'新增',title:'各年級課本版本',summary:'查看 115 學年度國語、數學、生活、自然與社會版本。',path:'/learning'},
   {id:'bus-gps-20260831',contentId:'bus-gps',scope:'common',updatedAt:'2026-08-31',category:'接送資訊',type:'新增',title:'新增校車 GPS 追蹤入口',summary:'已加入常用連結，方便前往校方追蹤頁面。',path:'/links'},
   {id:'pickup-pass-20260831',contentId:'pickup-pass',scope:'common',updatedAt:'2026-08-31',category:'校務通知',type:'新增',noticeId:'wego-pickup-pass-reissue-115s1',summary:'8/31–9/2 受理，9/7 起依序發放。'},
-  {id:'calendar-20260830',contentId:'calendar-115s1',scope:'common',updatedAt:'2026-08-30',category:'日期行程',type:'補充',title:'第一學期行事曆補齊',summary:'查看活動、繳費與假日安排。',path:'/calendar'},
+  {id:'calendar-20260830',contentId:'calendar-115s1',scope:'common',updatedAt:'2026-08-31',category:'日期行程',type:'補充',title:'行事曆新增今天定位與篩選',summary:'從今天查看近期事項，可跳轉月份並篩選校務或英文作業。',path:'/calendar'},
   {id:'links-20260830',contentId:'parent-links',scope:'common',updatedAt:'2026-08-30',category:'常用連結',type:'新增',title:'家長常用連結整理',summary:'校務與語言學習入口集中查找。',path:'/links'},
   {id:'bus-guide-20260830',contentId:'bus-guide',scope:'common',updatedAt:'2026-08-30',category:'接送資訊',type:'補充',title:'校車異動注意事項',summary:'查看異動方式與參考說明。',path:'/links/bus'},
   {id:'homework-20260831',contentId:'english-homework',scope:'vwej3',updatedAt:'2026-08-31',category:'學習',type:'更正',title:'英文作業月曆與原圖歸檔',summary:'可切換年月查閱每日作業與對應原圖，並同步一忠行事曆。',path:'/homework',noticeId:'vwej3-english-homework-20260831'},
