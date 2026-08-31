@@ -28,6 +28,7 @@ export const classPortals={
       {id:'vwej3-eng-0812',date:'8/12（三）',title:'暑輔英語評量',source:'一忠班級群組通知',start:'2026-08-12'}
     ],
     notices:[
+      {id:'vwej3-english-homework-20260831',date:'8/31',title:'新增 8/31–9/18 英文作業',source:'Weekly Homework（1B）',start:'2026-08-31',paragraphs:['請由首頁或「學習成長」的「英文作業」入口查看每日內容與原圖。U1 Quiz 日期在原表中有不一致，請向老師確認。']},
       {id:'vwej3-bus-system-0821',date:'8/21',title:'校車異動回報系統可使用學生帳號密碼登入',source:'一忠班級群組通知',start:'2026-08-21'},
       {id:'vwej3-eye-traffic-0808',date:'8月上旬',title:'補充護眼護照與交通安全親子共學手冊說明',source:'一忠班級群組通知',start:'2026-08-08'},
       {id:'vwej3-pencil-0805',date:'8/5',title:'新增正確握筆與書寫姿勢參考',source:'一忠班級群組通知',start:'2026-08-05'},

@@ -10,6 +10,8 @@ import {buildCalendar} from './ics.js';
 import {classPortals, resolvePortalData} from './portal-data.js';
 import LinksPage from './LinksPage.jsx';
 import TimetablePage from './TimetablePage.jsx';
+import HomeworkPage from './HomeworkPage.jsx';
+import {classHomework} from './homework-data.js';
 import {classTimetables} from './timetable-data.js';
 import {COMMON_ORIGIN, defaultClassForHost, routeForLocation, contextualHref} from './routing.js';
 
@@ -129,6 +131,7 @@ function withCtx(path,ctx){
 function Source({children}){return <small className="source">來源：{children}</small>}
 function TimetableEntry({ctx}){return ctx.kind==='class'&&classTimetables[ctx.slug]?<a className="home-links-entry" href={withCtx('/timetable',ctx)}><CalendarDots weight="duotone"/><div><strong>班級課表</strong><span>115 學年度第 1 學期・每週課程與作息</span></div><CaretRight/></a>:null}
 function PageHeader({title,description}){return <div className="page-header"><div><h1>{title}</h1>{description&&<p>{description}</p>}</div><time>內容最後更新：{UPDATED}</time></div>}
+function HomeworkEntry({ctx}){const homework=ctx.kind==='class'?classHomework[ctx.slug]:null;return homework?<a className="home-links-entry" href={withCtx('/homework',ctx)}><BookOpen weight="duotone"/><div><strong>英文作業</strong><span>{homework.period}・每週複習、單字與測驗提醒</span></div><CaretRight/></a>:null}
 function SectionTitle({icon:Icon,children}){return <h2 className="section-title"><Icon/>{children}</h2>}
 function MediaReferences({items}){return <section className="media-references" aria-label="原始資料與外部資源"><div><h2>原始資料與延伸資源</h2><p>摘要方便快速閱讀；需要核對細節時，可開啟原圖或原始連結。</p></div><div className="media-strip">{items.map(item=>item.src?<a href={item.src} target="_blank" rel="noreferrer" className="media-card" key={item.src}><img src={item.src} alt={item.title} loading="lazy"/><span><strong>{item.title}</strong><small>{item.meta}</small></span><CaretRight/></a>:<a href={item.href} target="_blank" rel="noreferrer" className="media-card external" key={item.href}><span className="external-icon"><BookOpen/></span><span><strong>{item.title}</strong><small>{item.meta}</small></span><CaretRight/></a>)}</div></section>}
 
@@ -146,8 +149,9 @@ function HomePage({d,ctx}){
       <a href={withCtx('/notices',ctx)}><span className="directory-icon"><Megaphone weight="duotone"/></span><h2>班級公告</h2><p>最新通知與資訊更正</p><ul>{d.notices.slice(-3).toReversed().map(item=><li key={item.id}>{item.title}</li>)}</ul><CaretRight className="directory-arrow"/></a>
     </section>
     <TimetableEntry ctx={ctx}/>
+    <HomeworkEntry ctx={ctx}/>
     <a className="home-links-entry" href={withCtx('/links',ctx)}><BookOpen weight="duotone"/><div><strong>家長常用連結</strong><span>學校官網、校車異動、語言學習與文件下載</span></div><CaretRight/></a>
-    <section className="update-band"><Clock/><strong>最新更新</strong><span>新增車家接證補發申請：8/31–9/2 受理，9/7（週一）起依申請次序分批發放。</span></section>
+    <section className="update-band"><Clock/><strong>最新更新</strong><span>{isClass&&classHomework[ctx.slug]?'新增 8/31–9/18 英文作業與原圖；車家接證補發申請至 9/2。':'新增車家接證補發申請：8/31–9/2 受理，9/7（週一）起依申請次序分批發放。'}</span></section>
   </>;
 }
 
@@ -192,6 +196,7 @@ function LearningPage({d,ctx}){
   const items=classics.filter(c=>isClass||c.scope!=='class');
   return <>
     <PageHeader title={`${d.label}學習成長`} description="考試、評量與學習參考"/>
+    <HomeworkEntry ctx={ctx}/>
     <TimetableEntry ctx={ctx}/>
     <section>
       <SectionTitle icon={BookOpen}>近期考試與評量</SectionTitle>
@@ -266,10 +271,11 @@ function App(){
   else if(path.startsWith('/school')) page=<SchoolAffairsPage d={d} ctx={ctx} path={path}/>;
   else if(path==='/notices') page=<NoticesPage d={d} ctx={ctx}/>;
   else if(path==='/links') page=<LinksPage updated={UPDATED}/>;
+  else if(path==='/homework') page=ctx.kind==='class'&&classHomework[ctx.slug]?<HomeworkPage homework={classHomework[ctx.slug]} updated={UPDATED}/>:<NotFoundPage/>;
   else if(path==='/timetable') page=ctx.kind==='class'&&classTimetables[ctx.slug]?<TimetablePage timetable={classTimetables[ctx.slug]} updated={UPDATED}/>:<NotFoundPage/>;
   else page=<HomePage d={d} ctx={ctx}/>;
 
-  const activePath=path==='/timetable'?'/calendar':path.startsWith('/school')?'/school':path;
+  const activePath=path==='/homework'?'/learning':path==='/timetable'?'/calendar':path.startsWith('/school')?'/school':path;
   return <div className={ctx.kind==='common'?'common-site':'class-site'}>
     <header className="site-header">
       <a className="brand" href={withCtx('/',ctx)}>{ctx.kind==='common'?<Bell className="brand-bell" weight="duotone"/>:<Leaf weight="duotone"/>}{ctx.kind==='common'?COMMON_TITLE:'薇閣小一資料站'}{ctx.kind==='class'&&<span className="class-badge">{ctx.label}</span>}</a>
