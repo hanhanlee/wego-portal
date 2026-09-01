@@ -1,10 +1,10 @@
 import React,{useEffect,useRef,useState} from 'react';
-import {House,CalendarDots,BookOpen,Buildings,Megaphone,DotsThree,X,CaretRight,ChatText,Notebook} from '@phosphor-icons/react';
+import {House,CalendarDots,BookOpen,Buildings,Megaphone,DotsThree,X,CaretRight,ChatText,Notebook,MagnifyingGlass} from '@phosphor-icons/react';
 import {contextualHref} from './routing.js';
 import {classTeacherNotes} from './teacher-notes-data.js';
 import {classContactBooks} from './contact-book-data.js';
 
-const links=[['/','首頁',House],['/calendar','日期行程',CalendarDots],['/learning','學習成長',BookOpen],['/school','學校事務',Buildings],['/notices','通知公告',Megaphone],['/links','常用連結',BookOpen]];
+const links=[['/','首頁',House],['/calendar','日期行程',CalendarDots],['/learning','學習成長',BookOpen],['/school','學校事務',Buildings],['/notices','通知公告',Megaphone],['/links','常用連結',BookOpen],['/search','搜尋',MagnifyingGlass]];
 export default function Navigation({ctx,activePath}) {
   const dialog=useRef(null),trigger=useRef(null),pendingHref=useRef(null);
   const [open,setOpen]=useState(false);

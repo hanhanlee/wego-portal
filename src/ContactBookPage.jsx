@@ -7,12 +7,13 @@ const sectionConfig=[
 ];
 const displayDate=date=>`${Number(date.slice(5,7))}/${Number(date.slice(8,10))}`;
 
-export default function ContactBookPage({entries,ctx,updated}){
+export default function ContactBookPage({entries,ctx,updated,initialDate}){
   const ordered=useMemo(()=>entries.toSorted((a,b)=>b.date.localeCompare(a.date)),[entries]);
   const months=contactBookMonths(ordered);
-  const [month,setMonth]=useState(months[0]);
+  const initial=ordered.find(entry=>entry.date===initialDate)||ordered[0];
+  const [month,setMonth]=useState(initial?.date.slice(0,7)||months[0]);
   const monthEntries=ordered.filter(entry=>entry.date.startsWith(month));
-  const [selectedId,setSelectedId]=useState(ordered[0]?.id);
+  const [selectedId,setSelectedId]=useState(initial?.id);
   const selected=monthEntries.find(entry=>entry.id===selectedId)||monthEntries[0];
   function chooseMonth(value){setMonth(value);setSelectedId(ordered.find(entry=>entry.date.startsWith(value))?.id)}
   return <>

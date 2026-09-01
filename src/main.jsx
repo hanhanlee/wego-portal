@@ -24,6 +24,7 @@ import {textbookVersions115} from './textbook-data.js';
 import MorningSpeechSection from './MorningSpeechSection.jsx';
 import ContactBookPage from './ContactBookPage.jsx';
 import {classContactBooks} from './contact-book-data.js';
+import SearchPage from './SearchPage.jsx';
 import {COMMON_ORIGIN, defaultClassForHost, routeForLocation, contextualHref} from './routing.js';
 
 const UPDATED='2026年9月1日';
@@ -125,6 +126,7 @@ const classics=[
    video:{href:'https://youtu.be/8VSbJKs5ILs', label:'麥克阿瑟《為子祈禱文》', meta:'YouTube・小鈴噹群組熱心家長提供'},
    source:'學校家長座談會（導師轉述）'}
 ];
+const searchExtras={schoolRows,classics};
 
 // 路由解析：可選的 /class/:slug 前綴攜帶班級脈絡，其後為一般路徑。
 function parseRoute(){
@@ -256,13 +258,14 @@ function App(){
   else if(path.startsWith('/notices/')) {const notice=d.notices.find(n=>n.id===path.slice(9));page=notice?<NoticesPage d={d} ctx={ctx} updated={UPDATED} notice={notice}/>:<NotFoundPage/>;}
   else if(path==='/links/bus') page=<LinksPage updated={UPDATED} busOnly/>;
   else if(path==='/links') page=<LinksPage updated={UPDATED}/>;
+  else if(path==='/search') page=<SearchPage ctx={ctx} extras={searchExtras} updated={UPDATED}/>;
   else if(path==='/teacher-notes') page=ctx.kind==='class'&&classTeacherNotes[ctx.slug]?<TeacherNotesPage notes={classTeacherNotes[ctx.slug]} ctx={ctx}/>:<NotFoundPage/>;
-  else if(path==='/contact-book') page=ctx.kind==='class'&&classContactBooks[ctx.slug]?<ContactBookPage entries={classContactBooks[ctx.slug]} ctx={ctx} updated={UPDATED}/>:<NotFoundPage/>;
+  else if(path==='/contact-book'||path.startsWith('/contact-book/')) page=ctx.kind==='class'&&classContactBooks[ctx.slug]?<ContactBookPage entries={classContactBooks[ctx.slug]} ctx={ctx} updated={UPDATED} initialDate={path.slice(14)||undefined}/>:<NotFoundPage/>;
   else if(path==='/homework') page=ctx.kind==='class'&&classHomework[ctx.slug]?<HomeworkPage homework={classHomework[ctx.slug]} updated={UPDATED} ctx={ctx}/>:<NotFoundPage/>;
   else if(path==='/timetable') page=ctx.kind==='class'&&classTimetables[ctx.slug]?<TimetablePage timetable={classTimetables[ctx.slug]} updated={UPDATED}/>:<NotFoundPage/>;
   else page=<NotFoundPage/>;
 
-  const activePath=path==='/teacher-notes'||path==='/contact-book'?'/notices':path==='/homework'?'/learning':path==='/timetable'?'/calendar':path.startsWith('/school')?'/school':path.startsWith('/notices')?'/notices':path.startsWith('/calendar')?'/calendar':path.startsWith('/links')?'/links':path;
+  const activePath=path==='/teacher-notes'||path.startsWith('/contact-book')?'/notices':path==='/homework'?'/learning':path==='/timetable'?'/calendar':path.startsWith('/school')?'/school':path.startsWith('/notices')?'/notices':path.startsWith('/calendar')?'/calendar':path.startsWith('/links')?'/links':path;
   return <div className={ctx.kind==='common'?'common-site':'class-site'}>
     <header className="site-header">
       <a className="brand" href={withCtx('/',ctx)}>{ctx.kind==='common'?<Bell className="brand-bell" weight="duotone"/>:<Leaf weight="duotone"/>}{ctx.kind==='common'?COMMON_TITLE:'薇閣小一資料站'}{ctx.kind==='class'&&<span className="class-badge">{ctx.label}</span>}</a>

@@ -10,6 +10,9 @@ test('一忠晨間演說六組依抽籤順序且都在週三',()=>{
   assert.equal(new Set(rows.map(row=>row.group)).size,6);
   assert.equal(rows.filter(row=>row.language==='中文').length,3);
   assert.equal(rows.filter(row=>row.language==='英文').length,3);
+  assert.deepEqual(rows.filter(row=>row.language==='英文').map(row=>row.session),[1,2,3]);
+  assert.deepEqual(rows.filter(row=>row.language==='中文').map(row=>row.session),[1,2,3]);
+  assert.deepEqual(rows.flatMap(row=>row.seatNumbers).toSorted((a,b)=>a-b),Array.from({length:44},(_,index)=>index+1));
   for(const row of rows) assert.equal(new Date(`${row.iso}T00:00:00Z`).getUTCDay(),3);
 });
 
@@ -17,6 +20,7 @@ test('晨間演說只併入一忠行事曆並維持唯一 UID',()=>{
   const events=morningSpeechEvents('vwej3');
   assert.equal(events.length,6);
   assert.equal(new Set(events.map(event=>event.uid)).size,6);
+  assert.ok(events.every(event=>event.sequence===1));
   assert.equal(resolvePortalData().events.some(event=>event.uid.includes('morning-speech')),false);
   const merged=resolvePortalData('vwej3').events.filter(event=>event.uid.includes('morning-speech'));
   assert.deepEqual(merged.map(event=>event.uid).toSorted(),events.map(event=>event.uid).toSorted());

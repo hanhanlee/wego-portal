@@ -8,12 +8,13 @@ export const morningSpeech={
     '請在家多練習，聲音宏亮、速度放慢，並把內容念清楚。'
   ],
   schedules:{vwej3:[
-    {group:'第一組',date:'9/16',iso:'2026-09-16',language:'中文',order:1,week:'W3'},
-    {group:'第四組',date:'9/23',iso:'2026-09-23',language:'英文',order:2,week:'W4'},
-    {group:'第六組',date:'9/30',iso:'2026-09-30',language:'中文',order:3,week:'W5'},
-    {group:'第三組',date:'10/14',iso:'2026-10-14',language:'中文',order:4,week:'W7'},
-    {group:'第五組',date:'10/21',iso:'2026-10-21',language:'英文',order:5,week:'W8'},
-    {group:'第二組',date:'11/18',iso:'2026-11-18',language:'英文',order:6,week:'W12'}
+    {group:'第一組',date:'9/16',iso:'2026-09-16',language:'中文',session:1,order:1,week:'W3',seatNumbers:[1,2,3,4,42,43,44]},
+    {group:'第四組',date:'9/23',iso:'2026-09-23',language:'英文',session:1,order:2,week:'W4',seatNumbers:[13,14,15,16,32,33,34,35]},
+    {group:'第六組',date:'9/30',iso:'2026-09-30',language:'中文',session:2,order:3,week:'W5',seatNumbers:[21,22,23,24,25,26,27]},
+    {group:'第三組',date:'10/14',iso:'2026-10-14',language:'中文',session:3,order:4,week:'W7',seatNumbers:[9,10,11,12,36,37,38]},
+    {group:'第五組',date:'10/21',iso:'2026-10-21',language:'英文',session:2,order:5,week:'W8',seatNumbers:[17,18,19,20,28,29,30,31]},
+    {group:'第二組',date:'11/18',iso:'2026-11-18',language:'英文',session:3,order:6,week:'W12',seatNumbers:[5,6,7,8,39,40,41]}
   ]}
 };
-export function morningSpeechEvents(slug){return (morningSpeech.schedules[slug]||[]).map(item=>({uid:`${slug}-morning-speech-order-${item.order}-115s1`,d:item.date,title:`晨間演說｜${item.group}${item.language}朗讀`,detail:`順序 ${item.order}・${item.week}；週三早晨到別班進行${item.language}課文朗讀，一年級不用背稿。`,source:'小鈴鐺群組',start:item.iso,end:item.iso}))}
+export const morningSpeechEventUid=(slug,item)=>`${slug}-morning-speech-order-${item.order}-115s1`;
+export function morningSpeechEvents(slug){return (morningSpeech.schedules[slug]||[]).map(item=>({uid:morningSpeechEventUid(slug,item),d:item.date,title:`晨間演說｜${item.group}${item.language}第 ${item.session} 次朗讀`,detail:`座號 ${item.seatNumbers.join('、')}；順序 ${item.order}・${item.week}。週三早晨到別班進行${item.language}課文朗讀，一年級不用背稿。`,source:'小鈴鐺群組',start:item.iso,end:item.iso,sequence:1}))}

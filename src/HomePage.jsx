@@ -1,5 +1,5 @@
 import React from 'react';
-import {BookOpen,CalendarDots,CaretRight,Megaphone,ChatText,Notebook} from '@phosphor-icons/react';
+import {BookOpen,CalendarDots,CaretRight,Megaphone,ChatText,Notebook,MagnifyingGlass} from '@phosphor-icons/react';
 import {classHomework} from './homework-data.js';
 import {classTimetables} from './timetable-data.js';
 import {contextualHref} from './routing.js';
@@ -37,6 +37,7 @@ export default function HomePage({d,ctx,updated}) {
       <div><h1>{isClass?`${d.label}班級資訊`:'一年級共通資訊'}</h1><p>{isClass?'查看班級近況與學校共通提醒。':'學校通知與生活資訊，一起從容準備。'}</p></div>
       <time>內容更新至 {updated}</time>
     </div>
+    <a className="home-search-link" href={href('/search',ctx)}><MagnifyingGlass aria-hidden="true"/><span><strong>搜尋本站</strong><small>搜尋作業、通知、日期與學習資料</small></span><CaretRight aria-hidden="true"/></a>
     {hasHomework||hasTimetable?<nav className="home-shortcuts" aria-label="班級常用捷徑">
       {isClass&&classContactBooks[ctx.slug]?<a href={href('/contact-book',ctx)}><Notebook aria-hidden="true"/>每日聯絡簿</a>:null}
       {isClass&&classTeacherNotes[ctx.slug]?<a href={href('/teacher-notes',ctx)}><ChatText aria-hidden="true"/>導師聯絡事項</a>:null}
