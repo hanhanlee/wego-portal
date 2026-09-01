@@ -2,6 +2,7 @@ import {commonPortal, classPortals} from './portal-data.js';
 
 // 更新日期來自已核對的發布紀錄，與活動日期分開；同一內容用相同 contentId。
 export const updates = [
+  {id:'daily-schedule-20260901',contentId:'daily-schedule-115',scope:'common',updatedAt:'2026-09-01',category:'學校事務',type:'新增',title:'115學年度每日作息時間表',summary:'晨間閱讀、上下課、午餐午休、放學與課後安親時段集中查閱。',path:'/school/daily'},
   {id:'site-search-20260901',contentId:'site-search',scope:'common',updatedAt:'2026-09-01',category:'網站功能',type:'新增',title:'新增全文關鍵字搜尋',summary:'可搜尋已整理的作業、通知、日期、學習與校務內容。',path:'/search'},
   {id:'contact-book-20260901',contentId:'contact-book-daily',scope:'vwej3',updatedAt:'2026-09-01',category:'每日聯絡簿',type:'新增',title:'8/31、9/1 每日聯絡簿',summary:'作業、繳交資料、明日準備與導師提醒集中查閱。',path:'/contact-book'},
   {id:'traffic-guidance-20260901',contentId:'traffic-guidance-20260901',scope:'common',updatedAt:'2026-09-01',category:'接送資訊',type:'新增',title:'上放學交通宣導注意事項',summary:'校門口行車、下車、車接時間與接送方式變更提醒。',path:'/school/transport'},

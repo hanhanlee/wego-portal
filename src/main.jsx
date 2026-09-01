@@ -52,6 +52,7 @@ const schoolSections=[
 
 const schoolRows={
   daily:[
+    {scope:'common',title:'115學年度每日作息',summary:'07:10 起晨間閱讀，08:20 早餐，08:55 第一節開始；上午四節至 12:00，午餐與午休後 13:00 起上第五至第七節。15:20 後依國際班、菁英班或小學院安排第八節、課業輔導與放學；16:30–16:55 為點心時間，16:55–17:35 為課後安親班或小學院第二堂課。各時段細節請點圖查看。',date:'115學年度',reference:'臺北市私立薇閣小學115學年度作息時間表',source:'學校作息時間表',image:{src:'/assets/references/school-affairs/daily-schedule-115.jpg',alt:'臺北市私立薇閣小學115學年度作息時間表'}},
     {scope:'class',title:'日常攜帶用品',summary:'聯絡簿、鉛筆盒、水壺、餐具與餐巾、衛生紙、手帕、備用口罩、酒精擦與姓名貼。',date:'暑輔期間',reference:'一忠暑輔日常提醒',source:'一忠班級群組通知'},
     {scope:'class',title:'護眼護照',summary:'提供共 6 次專業視力檢查服務，每年限使用 1 次，使用期限至畢業當年度 6 月 30 日；請妥善保管。',date:'8月上旬',reference:'護眼護照發放提醒',source:'一忠班級群組通知'},
     {scope:'class',title:'交通安全親子共學手冊',summary:'配合教育局政策發放，家長可利用在家時間陪孩子閱讀，共同培養交通安全觀念。',date:'8月上旬',reference:'交通安全親子共學手冊發放提醒',source:'一忠班級群組通知'},
