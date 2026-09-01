@@ -1,4 +1,5 @@
 import {homeworkEvents} from './homework-calendar.js';
+import {morningSpeechEvents} from './morning-speech-data.js';
 // 行事曆事件的單一真實來源：網站畫面與 .ics 訂閱 feed 都由此產生，避免兩套資料不同步。
 // 每個事件：
 //   uid    穩定唯一識別（改日期時務必保留同一個 uid，訂閱端才會更新而非新增一筆）
@@ -58,6 +59,7 @@ export const classes={
     label:'一忠',
     events:[
       ...homeworkEvents('vwej3'),
+      ...morningSpeechEvents('vwej3'),
       {uid:'vwej3-eng-0812',       d:'8/12', title:'暑輔英語評量',   detail:'英語評量',     source:'一忠班級群組通知', start:'2026-08-12', end:'2026-08-12'},
       {uid:'vwej3-introcard-0817', d:'8/17', title:'自我介紹卡繳交', detail:'最晚繳交日期', source:'一忠班級群組通知', start:'2026-08-17', end:'2026-08-17'}
     ]

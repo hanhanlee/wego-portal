@@ -8,7 +8,7 @@ export const linkGroups = [
     {id:'bus', title:'校車異動回報系統', href:'https://www.wgps.tp.edu.tw/Registered/school_bus_std_change.asp', description:'搭乘校車學生申請接送或下車地點異動；送出前請先閱讀下方注意事項。', access:'依校方驗證'}
   ]},
   {id:'learning', title:'語言學習', items:[
-    {id:'languages', title:'外語教學資源', href:'https://esweb.wgps.tp.edu.tw/nss/p/8005', description:'菁英班英語、日語課本音檔。', access:'校內 Google 帳號'},
+    {id:'languages', title:'外語教學資源', href:'https://esweb.wgps.tp.edu.tw/nss/p/8005', description:'菁英班英語、日語課本音檔，可至學校官網下載。', access:'校內 Google 帳號'},
     {id:'japanese', title:'日語通關密語', href:'https://www.wgps.tp.edu.tw/japanesepassphrase/index.asp', description:'依校方頁面指示，以孩子身分資料登入。請勿在本站輸入個人資料。', access:'依校方驗證'},
     {id:'raz-account', title:'Raz-Kids 帳號密碼查詢', href:'https://www.wgps.tp.edu.tw/registered/stu_RazKids_index.asp', description:'透過學校系統查詢孩子的閱讀平台登入資訊。', access:'依校方驗證'},
     {id:'raz', title:'Raz-Kids 閱讀平台', href:'https://www.raz-kids.com/', description:'取得學校提供的登入資訊後，前往閱讀平台使用。', access:'Raz-Kids 帳號'}

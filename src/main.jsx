@@ -21,9 +21,10 @@ import HomeworkPage from './HomeworkPage.jsx';
 import {classHomework} from './homework-data.js';
 import {classTimetables} from './timetable-data.js';
 import {textbookVersions115} from './textbook-data.js';
+import MorningSpeechSection from './MorningSpeechSection.jsx';
 import {COMMON_ORIGIN, defaultClassForHost, routeForLocation, contextualHref} from './routing.js';
 
-const UPDATED='2026年8月31日';
+const UPDATED='2026年9月1日';
 const COMMON_TITLE='Wego小一小鈴鐺資訊站';
 
 
@@ -66,6 +67,7 @@ const schoolRows={
     {scope:'common',title:'書包與手提袋單品參考',summary:'舊訂購單列示書包 880 元、手提袋 200 元；價格可能調整，購買前請以新訂購單為準。',date:'歷史價格',reference:'夏季服裝訂購單',source:'小鈴噹群組熱心家長整理'}
   ],
   transport:[
+    {scope:'common',title:'上放學交通宣導注意事項',summary:'上學時請勿在校門口迴轉，應禮讓行人、避免停在斑馬線，並依行車方向靠右安全下車；車輛抵校前請先備妥書包與隨身物品。放學車接請勿提早到育仁路違停或併排，安親班車建議 17:50 後到校；如須變更接送方式，請提早通知導師並到正確位置接回。請配合交通與校門安全人員指揮。',date:'9/1',reference:'臺北市私立薇閣小學交通宣導注意事項',source:'薇閣小學 App 通知',image:{src:'/assets/references/school-affairs/traffic-guidance-20260901.jpg',alt:'尊重路權、守規有禮：薇閣小學上放學交通宣導圖'}},
     {scope:'class',title:'校車異動回報系統',summary:'由學校提供的校車異動回報系統入口進入，使用孩子的帳號密碼登入；若無法開啟，請以導師或學校最新說明為準。',date:'8/21確認',reference:'校車異動回報系統登入說明',source:'一忠班級群組通知'},
     {scope:'common',title:'115學年度第一學期校車登錄',summary:'所有學生無論校車、車接或家接皆須完成調查；原公告填寫期間已截止。',date:'7/20–7/23',reference:'上放學方式暨校車搭乘申請調查表',source:'學校通知'},
     {scope:'common',title:'暑輔日常放學方式',summary:'第一班校車、車接與家接為 15:20；第二班校車為 16:20。異動仍依學校 App 與導師通知辦理。',date:'暑輔期間',reference:'一年級暑輔注意事項',source:'一年級導師通知'}
@@ -90,7 +92,10 @@ const schoolOriginals={
   uniform:[{src:'/assets/references/school-affairs/uniform-guide.jpg',title:'薇小校服整理參考',meta:'小鈴噹群組熱心家長整理'}],
   'book-covers':[{src:'/assets/references/school-affairs/book-cover-sizes.jpg',title:'114學年度菁英班書套尺寸參考',meta:'小鈴噹群組熱心家長整理'}],
   purchases:[{src:'/assets/references/school-affairs/summer-order-form.jpg',title:'夏季服裝訂購單與價格參考',meta:'小鈴噹群組熱心家長提供'}],
-  transport:[{src:'/assets/references/school-affairs/transport-guide.jpg',title:'暑輔服裝、請假與接送注意事項',meta:'一年級暑輔資料'}],
+  transport:[
+    {src:'/assets/references/school-affairs/traffic-guidance-20260901.jpg',title:'上放學交通宣導注意事項',meta:'薇閣小學 App 通知・2026年9月1日'},
+    {src:'/assets/references/school-affairs/transport-guide.jpg',title:'暑輔服裝、請假與接送注意事項',meta:'一年級暑輔資料'}
+  ],
   parking:[
     {src:'/assets/references/school-affairs/parent-meeting-parking.jpg',title:'新生家長說明會會前注意事項',meta:'學校通知・2026年7月16日'},
     {src:'/assets/references/school-affairs/school-day-parking-114.jpg',title:'114學年度學校日通知',meta:'歷史參考資料'}
@@ -177,6 +182,7 @@ function LearningPage({d,ctx}){
       <SectionTitle icon={BookOpen}>近期考試與評量</SectionTitle>
       <div className="simple-table">{d.exams.map(item=><div key={item.id}><time>{item.date}</time><strong>{item.title}</strong><Source>{item.source}</Source></div>)}</div>
     </section>
+    <MorningSpeechSection ctx={ctx}/>
     <TextbookVersions/>
     <section className="classics-section">
       <SectionTitle icon={BookOpen}>經典文學</SectionTitle>
@@ -206,7 +212,7 @@ function LearningPage({d,ctx}){
   </>;
 }
 
-function SchoolRows({rows,Icon}){return <div className="affairs-table"><div className="affairs-head"><span>主題</span><span>摘要</span><span>參考日期</span><span>活動／文件名稱</span><span>來源</span></div>{rows.map(row=><article key={row.title}><div className="affairs-topic"><span><Icon/></span><h3>{row.title}</h3></div><p>{row.summary}</p><time>{row.date}</time><strong>{row.reference}</strong><Source>{row.source}</Source></article>)}</div>}
+function SchoolRows({rows,Icon}){return <div className="affairs-table"><div className="affairs-head"><span>主題</span><span>摘要</span><span>參考日期</span><span>活動／文件名稱</span><span>來源</span></div>{rows.map(row=><article className={row.image?'affairs-row-with-image':undefined} key={row.title}><div className="affairs-topic"><span><Icon/></span><h3>{row.title}</h3></div><p>{row.summary}</p><time>{row.date}</time><strong>{row.reference}</strong><Source>{row.source}</Source>{row.image&&<a className="affairs-inline-image" href={row.image.src} target="_blank" rel="noreferrer"><img src={row.image.src} alt={row.image.alt} loading="lazy"/><span>點圖查看完整尺寸</span></a>}</article>)}</div>}
 
 function SchoolAffairsPage({d,ctx,path}){
   const key=path.split('/')[2]||'daily';

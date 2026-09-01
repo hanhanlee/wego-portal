@@ -2,6 +2,10 @@ import {commonPortal, classPortals} from './portal-data.js';
 
 // 更新日期來自已核對的發布紀錄，與活動日期分開；同一內容用相同 contentId。
 export const updates = [
+  {id:'traffic-guidance-20260901',contentId:'traffic-guidance-20260901',scope:'common',updatedAt:'2026-09-01',category:'接送資訊',type:'新增',title:'上放學交通宣導注意事項',summary:'校門口行車、下車、車接時間與接送方式變更提醒。',path:'/school/transport'},
+  {id:'morning-speech-common-20260901',contentId:'morning-speech-115s1',scope:'common',updatedAt:'2026-09-01',category:'學習資訊',type:'新增',title:'晨間演說進行方式',summary:'整理分組、抽籤、朗讀／演說與期末獎狀規則。',path:'/learning'},
+  {id:'morning-speech-vwej3-20260901',contentId:'morning-speech-115s1',scope:'vwej3',updatedAt:'2026-09-01',category:'班級行程',type:'新增',title:'一忠晨間演說分組日期',summary:'六組日期為 9/16 至 11/18，並已加入一忠行事曆。',path:'/learning'},
+  {id:'foreign-audio-20260901',contentId:'foreign-audio',scope:'common',updatedAt:'2026-09-01',category:'學習資源',type:'補充',title:'菁英班英、日語課本音檔',summary:'可由學校外語教學資源頁下載。',path:'/links'},
   {id:'teacher-note-20260831',contentId:'teacher-20260831-important',scope:'vwej3',updatedAt:'2026-08-31',category:'導師通知',type:'新增',title:'8/31 導師重要通知',summary:'資料保管、9/1 穿運動服、學用品及防身警報器補發提醒。',path:'/teacher-notes'},
   {id:'textbooks-20260831',contentId:'textbooks-115',scope:'common',updatedAt:'2026-08-31',category:'學習資訊',type:'新增',title:'各年級課本版本',summary:'查看 115 學年度國語、數學、生活、自然與社會版本。',path:'/learning'},
   {id:'bus-gps-20260831',contentId:'bus-gps',scope:'common',updatedAt:'2026-08-31',category:'接送資訊',type:'新增',title:'新增校車 GPS 追蹤入口',summary:'已加入常用連結，方便前往校方追蹤頁面。',path:'/links'},
