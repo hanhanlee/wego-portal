@@ -1,1 +1,48 @@
-<!doctype html><html lang="zh-Hant"><head><meta charset="UTF-8"><meta name="robots" content="noindex, nofollow, noimageindex"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="薇閣小一家長行事曆、考試與用品資訊整理站"><title>Wego小一小鈴鐺資訊站</title></head><body><div id="root"></div><script type="module" src="/src/main.jsx"></script></body></html>
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex, nofollow, noimageindex">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="薇閣小一家長行事曆、考試與用品資訊整理站">
+    <meta name="theme-color" content="#124f4a">
+    <title>Wego小一小鈴鐺資訊站</title>
+    <script>
+      (() => {
+        const links = {
+          apple: document.createElement('link'),
+          favicon: document.createElement('link'),
+          manifest: document.createElement('link'),
+        }
+
+        links.apple.rel = 'apple-touch-icon'
+        links.apple.sizes = '180x180'
+        links.favicon.rel = 'icon'
+        links.favicon.type = 'image/png'
+        links.favicon.sizes = '192x192'
+        links.manifest.rel = 'manifest'
+
+        Object.values(links).forEach((link) => document.head.appendChild(link))
+
+        const updateAppIcons = () => {
+          const isClassSite = location.hostname.toLowerCase() === 'myclass.kiddorpg.cc'
+            || /^#\/class\/vwej3(?:\/|$)/.test(location.hash)
+          const iconName = isClassSite ? 'class-loyalty' : 'common-bell'
+
+          links.apple.href = `/icons/${iconName}-180.png`
+          links.favicon.href = `/icons/${iconName}-192.png`
+          links.manifest.href = isClassSite
+            ? '/manifest-class.webmanifest'
+            : '/manifest-common.webmanifest'
+        }
+
+        updateAppIcons()
+        window.addEventListener('hashchange', updateAppIcons)
+      })()
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
