@@ -22,6 +22,8 @@ import {classHomework} from './homework-data.js';
 import {classTimetables} from './timetable-data.js';
 import {textbookVersions115} from './textbook-data.js';
 import MorningSpeechSection from './MorningSpeechSection.jsx';
+import ContactBookPage from './ContactBookPage.jsx';
+import {classContactBooks} from './contact-book-data.js';
 import {COMMON_ORIGIN, defaultClassForHost, routeForLocation, contextualHref} from './routing.js';
 
 const UPDATED='2026年9月1日';
@@ -255,11 +257,12 @@ function App(){
   else if(path==='/links/bus') page=<LinksPage updated={UPDATED} busOnly/>;
   else if(path==='/links') page=<LinksPage updated={UPDATED}/>;
   else if(path==='/teacher-notes') page=ctx.kind==='class'&&classTeacherNotes[ctx.slug]?<TeacherNotesPage notes={classTeacherNotes[ctx.slug]} ctx={ctx}/>:<NotFoundPage/>;
+  else if(path==='/contact-book') page=ctx.kind==='class'&&classContactBooks[ctx.slug]?<ContactBookPage entries={classContactBooks[ctx.slug]} ctx={ctx} updated={UPDATED}/>:<NotFoundPage/>;
   else if(path==='/homework') page=ctx.kind==='class'&&classHomework[ctx.slug]?<HomeworkPage homework={classHomework[ctx.slug]} updated={UPDATED} ctx={ctx}/>:<NotFoundPage/>;
   else if(path==='/timetable') page=ctx.kind==='class'&&classTimetables[ctx.slug]?<TimetablePage timetable={classTimetables[ctx.slug]} updated={UPDATED}/>:<NotFoundPage/>;
   else page=<NotFoundPage/>;
 
-  const activePath=path==='/teacher-notes'?'/notices':path==='/homework'?'/learning':path==='/timetable'?'/calendar':path.startsWith('/school')?'/school':path.startsWith('/notices')?'/notices':path.startsWith('/calendar')?'/calendar':path.startsWith('/links')?'/links':path;
+  const activePath=path==='/teacher-notes'||path==='/contact-book'?'/notices':path==='/homework'?'/learning':path==='/timetable'?'/calendar':path.startsWith('/school')?'/school':path.startsWith('/notices')?'/notices':path.startsWith('/calendar')?'/calendar':path.startsWith('/links')?'/links':path;
   return <div className={ctx.kind==='common'?'common-site':'class-site'}>
     <header className="site-header">
       <a className="brand" href={withCtx('/',ctx)}>{ctx.kind==='common'?<Bell className="brand-bell" weight="duotone"/>:<Leaf weight="duotone"/>}{ctx.kind==='common'?COMMON_TITLE:'薇閣小一資料站'}{ctx.kind==='class'&&<span className="class-badge">{ctx.label}</span>}</a>

@@ -1,14 +1,15 @@
 import React,{useEffect,useRef,useState} from 'react';
-import {House,CalendarDots,BookOpen,Buildings,Megaphone,DotsThree,X,CaretRight,ChatText} from '@phosphor-icons/react';
+import {House,CalendarDots,BookOpen,Buildings,Megaphone,DotsThree,X,CaretRight,ChatText,Notebook} from '@phosphor-icons/react';
 import {contextualHref} from './routing.js';
 import {classTeacherNotes} from './teacher-notes-data.js';
+import {classContactBooks} from './contact-book-data.js';
 
 const links=[['/','首頁',House],['/calendar','日期行程',CalendarDots],['/learning','學習成長',BookOpen],['/school','學校事務',Buildings],['/notices','通知公告',Megaphone],['/links','常用連結',BookOpen]];
 export default function Navigation({ctx,activePath}) {
   const dialog=useRef(null),trigger=useRef(null),pendingHref=useRef(null);
   const [open,setOpen]=useState(false);
   const href=path=>contextualHref(path,ctx,location.hostname);
-  const moreLinks=[...(ctx.kind==='class'&&classTeacherNotes[ctx.slug]?[['/teacher-notes','導師聯絡事項',ChatText]]:[]),...links.slice(3)];
+  const moreLinks=[...(ctx.kind==='class'&&classContactBooks[ctx.slug]?[['/contact-book','每日聯絡簿',Notebook]]:[]),...(ctx.kind==='class'&&classTeacherNotes[ctx.slug]?[['/teacher-notes','導師聯絡事項',ChatText]]:[]),...links.slice(3)];
   const moreActive=links.slice(3).some(([path])=>path===activePath);
   function dismiss(destination=null) {
     pendingHref.current=destination;

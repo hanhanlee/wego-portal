@@ -1,11 +1,12 @@
 import React from 'react';
-import {BookOpen,CalendarDots,CaretRight,Megaphone,ChatText} from '@phosphor-icons/react';
+import {BookOpen,CalendarDots,CaretRight,Megaphone,ChatText,Notebook} from '@phosphor-icons/react';
 import {classHomework} from './homework-data.js';
 import {classTimetables} from './timetable-data.js';
 import {contextualHref} from './routing.js';
 import {resolveUpdates,upcomingEvents} from './updates-data.js';
 import useToday from './useToday.js';
 import {classTeacherNotes} from './teacher-notes-data.js';
+import {classContactBooks} from './contact-book-data.js';
 
 const href=(path,ctx)=>contextualHref(path,ctx,location.hostname);
 
@@ -37,6 +38,7 @@ export default function HomePage({d,ctx,updated}) {
       <time>內容更新至 {updated}</time>
     </div>
     {hasHomework||hasTimetable?<nav className="home-shortcuts" aria-label="班級常用捷徑">
+      {isClass&&classContactBooks[ctx.slug]?<a href={href('/contact-book',ctx)}><Notebook aria-hidden="true"/>每日聯絡簿</a>:null}
       {isClass&&classTeacherNotes[ctx.slug]?<a href={href('/teacher-notes',ctx)}><ChatText aria-hidden="true"/>導師聯絡事項</a>:null}
       {hasHomework?<a href={href('/homework',ctx)}><BookOpen aria-hidden="true"/>英文作業</a>:null}
       {hasTimetable?<a href={href('/timetable',ctx)}><CalendarDots aria-hidden="true"/>班級課表</a>:null}

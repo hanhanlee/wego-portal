@@ -2,6 +2,7 @@ import {commonPortal, classPortals} from './portal-data.js';
 
 // 更新日期來自已核對的發布紀錄，與活動日期分開；同一內容用相同 contentId。
 export const updates = [
+  {id:'contact-book-20260901',contentId:'contact-book-daily',scope:'vwej3',updatedAt:'2026-09-01',category:'每日聯絡簿',type:'新增',title:'8/31、9/1 每日聯絡簿',summary:'作業、繳交資料、明日準備與導師提醒集中查閱。',path:'/contact-book'},
   {id:'traffic-guidance-20260901',contentId:'traffic-guidance-20260901',scope:'common',updatedAt:'2026-09-01',category:'接送資訊',type:'新增',title:'上放學交通宣導注意事項',summary:'校門口行車、下車、車接時間與接送方式變更提醒。',path:'/school/transport'},
   {id:'morning-speech-common-20260901',contentId:'morning-speech-115s1',scope:'common',updatedAt:'2026-09-01',category:'學習資訊',type:'新增',title:'晨間演說進行方式',summary:'整理分組、抽籤、朗讀／演說與期末獎狀規則。',path:'/learning'},
   {id:'morning-speech-vwej3-20260901',contentId:'morning-speech-115s1',scope:'vwej3',updatedAt:'2026-09-01',category:'班級行程',type:'新增',title:'一忠晨間演說分組日期',summary:'六組日期為 9/16 至 11/18，並已加入一忠行事曆。',path:'/learning'},
