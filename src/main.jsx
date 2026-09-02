@@ -21,6 +21,7 @@ import HomeworkPage from './HomeworkPage.jsx';
 import {classHomework} from './homework-data.js';
 import {classTimetables} from './timetable-data.js';
 import {textbookVersions115} from './textbook-data.js';
+import {learningNotices} from './learning-notices-data.js';
 import MorningSpeechSection from './MorningSpeechSection.jsx';
 import ContactBookPage from './ContactBookPage.jsx';
 import {classContactBooks} from './contact-book-data.js';
@@ -127,7 +128,7 @@ const classics=[
    video:{href:'https://youtu.be/8VSbJKs5ILs', label:'麥克阿瑟《為子祈禱文》', meta:'YouTube・小鈴噹群組熱心家長提供'},
    source:'學校家長座談會（導師轉述）'}
 ];
-const searchExtras={schoolRows,classics};
+const searchExtras={schoolRows,classics,learningNotices};
 
 // 路由解析：可選的 /class/:slug 前綴攜帶班級脈絡，其後為一般路徑。
 function parseRoute(){
@@ -188,6 +189,14 @@ function LearningPage({d,ctx}){
       <div className="simple-table">{d.exams.map(item=><div key={item.id}><time>{item.date}</time><strong>{item.title}</strong><Source>{item.source}</Source></div>)}</div>
     </section>
     <MorningSpeechSection ctx={ctx}/>
+    <section className="learning-notices-section">
+      <SectionTitle icon={GraduationCap}>課程資源與準備</SectionTitle>
+      <p className="section-intro">外語在家練習與表演藝術課安全提醒。</p>
+      <div className="learning-notices-grid">{learningNotices.map(item=><article className="learning-notice-card" key={item.id}>
+        <a className="learning-notice-image" href={item.image} target="_blank" rel="noreferrer"><img src={item.image} alt={item.alt} loading="lazy"/><span>點圖查看完整尺寸</span></a>
+        <div className="learning-notice-copy"><h3>{item.title}</h3><p>{item.summary}</p><ol>{item.details.map(detail=><li key={detail}>{detail}</li>)}</ol>{item.note&&<p className="learning-notice-note">{item.note}</p>}{item.href&&<a className="outline-button" href={item.href} target="_blank" rel="noopener noreferrer">{item.linkLabel}<CaretRight/></a>}<Source>{item.source}</Source></div>
+      </article>)}</div>
+    </section>
     <TextbookVersions/>
     <section className="classics-section">
       <SectionTitle icon={BookOpen}>經典文學</SectionTitle>

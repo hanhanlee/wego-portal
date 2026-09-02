@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {buildSearchRecords,searchRecords,searchSnippet} from '../src/search-index.js';
+import {learningNotices} from '../src/learning-notices-data.js';
 
 const extras={schoolRows:{transport:[{scope:'common',title:'交通安全',summary:'禁止併排停車',date:'9/1',reference:'交通通知',source:'學校'}]},classics:[]};
 
@@ -36,4 +37,11 @@ test('一忠可用完整座號查到唯一晨間演說組別，共通不可查�
   assert.equal(classResults.length,1);
   assert.equal(classResults[0].title,'晨間演說｜第二組英文第 3 次朗讀');
   assert.equal(searchRecords(buildSearchRecords({kind:'common'},extras),'座號 5').length,0);
+});
+
+test('共通學習通知可搜尋且不帶出班級來源',()=>{
+  const records=buildSearchRecords({kind:'common'},{...extras,learningNotices});
+  assert.ok(searchRecords(records,'防滑襪').some(record=>record.title==='低年級表演藝術課服裝提醒'));
+  assert.ok(searchRecords(records,'日語 教科書 音檔').some(record=>record.title==='英、日語課本音檔使用方式'));
+  assert.equal(records.filter(record=>record.id.startsWith('learning-')).some(record=>record.searchText.includes('一忠')),false);
 });

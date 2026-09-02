@@ -2,6 +2,7 @@ import {commonPortal, classPortals} from './portal-data.js';
 
 // 更新日期來自已核對的發布紀錄，與活動日期分開；同一內容用相同 contentId。
 export const updates = [
+  {id:'common-learning-notices-20260902',contentId:'common-learning-notices',scope:'common',updatedAt:'2026-09-02',category:'學習資訊',type:'新增',title:'外語音檔與表演藝術課提醒',summary:'查看英、日語課本音檔使用步驟及低年級表演藝術課安全服裝準備。',path:'/learning'},
   {id:'daily-schedule-20260901',contentId:'daily-schedule-115',scope:'common',updatedAt:'2026-09-01',category:'學校事務',type:'新增',title:'115學年度每日作息時間表',summary:'晨間閱讀、上下課、午餐午休、放學與課後安親時段集中查閱。',path:'/school/daily'},
   {id:'site-search-20260901',contentId:'site-search',scope:'common',updatedAt:'2026-09-01',category:'網站功能',type:'新增',title:'新增全文關鍵字搜尋',summary:'可搜尋已整理的作業、通知、日期、學習與校務內容。',path:'/search'},
   {id:'contact-book-20260901',contentId:'contact-book-daily',scope:'vwej3',updatedAt:'2026-09-01',category:'每日聯絡簿',type:'新增',title:'8/31、9/1 每日聯絡簿',summary:'作業、繳交資料、明日準備與導師提醒集中查閱。',path:'/contact-book'},

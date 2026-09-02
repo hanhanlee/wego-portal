@@ -32,6 +32,7 @@ export function buildSearchRecords(ctx,extras={}){
     if(item.scope==='class'&&!slug) continue;
     add({id:`classic-${item.id}`,scope:item.scope==='class'?'class':'common',category:'學習成長',title:item.title,body:`${item.occasion} ${item.note}`,source:item.source,path:'/learning'});
   }
+  for(const item of extras.learningNotices||[]) add({id:`learning-${item.id}`,category:'學習成長',title:item.title,body:`${item.summary} ${join(item.details)} ${item.note||''}`,source:item.source,path:'/learning'});
   for(const group of linkGroups) for(const item of group.items) add({id:`link-${item.id}`,category:'常用連結',title:item.title,body:`${item.description} ${item.access}`,source:'家長常用連結',path:'/links'});
   add({id:'textbooks-115',category:'學習成長',title:'115 學年度各年級課本版本',body:textbookVersions115.map(row=>`${row.grade} 國語${row.chinese} 數學${row.math} 生活${row.life||''} 自然${row.science||''} 社會${row.social||''}`).join('；'),source:'學校教務相關 Q&A',path:'/learning'});
   add({id:'morning-speech-rules',category:'學習成長',title:'晨間演說進行方式',body:[...morningSpeech.rules,...morningSpeech.instructions].join(' '),source:'小鈴鐺群組',path:'/learning'});
