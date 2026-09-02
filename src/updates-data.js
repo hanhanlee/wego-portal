@@ -11,7 +11,7 @@ export const updates = [
   {id:'foreign-audio-20260901',contentId:'foreign-audio',scope:'common',updatedAt:'2026-09-01',category:'學習資源',type:'補充',title:'菁英班英、日語課本音檔',summary:'可由學校外語教學資源頁下載。',path:'/links'},
   {id:'teacher-note-20260831',contentId:'teacher-20260831-important',scope:'vwej3',updatedAt:'2026-08-31',category:'導師通知',type:'新增',title:'8/31 導師重要通知',summary:'資料保管、9/1 穿運動服、學用品及防身警報器補發提醒。',path:'/teacher-notes'},
   {id:'textbooks-20260831',contentId:'textbooks-115',scope:'common',updatedAt:'2026-08-31',category:'學習資訊',type:'新增',title:'各年級課本版本',summary:'查看 115 學年度國語、數學、生活、自然與社會版本。',path:'/learning'},
-  {id:'bus-gps-20260831',contentId:'bus-gps',scope:'common',updatedAt:'2026-08-31',category:'接送資訊',type:'新增',title:'新增校車 GPS 追蹤入口',summary:'已加入常用連結，方便前往校方追蹤頁面。',path:'/links'},
+  {id:'bus-gps-20260831',contentId:'bus-gps',scope:'common',updatedAt:'2026-09-02',category:'接送資訊',type:'更正',title:'國小校車資訊查詢入口',summary:'已更正為薇閣國小校車位置查詢網站；進入後須依校方頁面驗證學生身分。',path:'/links'},
   {id:'pickup-pass-20260831',contentId:'pickup-pass',scope:'common',updatedAt:'2026-08-31',category:'校務通知',type:'新增',noticeId:'wego-pickup-pass-reissue-115s1',summary:'8/31–9/2 受理，9/7 起依序發放。'},
   {id:'calendar-20260830',contentId:'calendar-115s1',scope:'common',updatedAt:'2026-08-31',category:'日期行程',type:'補充',title:'行事曆新增今天定位與篩選',summary:'從今天查看近期事項，可跳轉月份並篩選校務或英文作業。',path:'/calendar'},
   {id:'links-20260830',contentId:'parent-links',scope:'common',updatedAt:'2026-08-30',category:'常用連結',type:'新增',title:'家長常用連結整理',summary:'校務與語言學習入口集中查找。',path:'/links'},
