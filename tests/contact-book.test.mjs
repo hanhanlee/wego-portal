@@ -4,9 +4,19 @@ import {classContactBooks,contactBookMonths} from '../src/contact-book-data.js';
 
 test('一忠聯絡簿依穩定日期收錄且月份可擴充',()=>{
   const entries=classContactBooks.vwej3;
-  assert.deepEqual(entries.map(entry=>entry.date),['2026-08-31','2026-09-01']);
+  assert.deepEqual(entries.map(entry=>entry.date),['2026-08-31','2026-09-01','2026-09-02','2026-09-03']);
   assert.deepEqual(contactBookMonths(entries),['2026-09','2026-08']);
   assert.equal(new Set(entries.map(entry=>entry.id)).size,entries.length);
+});
+
+test('9/2 與 9/3 聯絡簿保留可查閱的核心作業與準備事項',()=>{
+  const entries=classContactBooks.vwej3;
+  const sep2=entries.find(entry=>entry.date==='2026-09-02');
+  const sep3=entries.find(entry=>entry.date==='2026-09-03');
+  assert.ok(sep2.homework.some(item=>item.includes('EP.14')));
+  assert.ok(sep2.notes.some(item=>item.includes('數位學生證')));
+  assert.ok(sep3.homework.some(item=>item.includes('珠算口訣')));
+  assert.ok(sep3.tomorrow.some(item=>item.includes('防滑襪')));
 });
 
 test('每日聯絡簿包含作業與準備事項，不保存學生名單',()=>{

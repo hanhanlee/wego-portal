@@ -28,7 +28,7 @@ import {classContactBooks} from './contact-book-data.js';
 import SearchPage from './SearchPage.jsx';
 import {COMMON_ORIGIN, defaultClassForHost, routeForLocation, contextualHref} from './routing.js';
 
-const UPDATED='2026年9月2日';
+const UPDATED='2026年9月3日';
 const COMMON_TITLE='Wego小一小鈴鐺資訊站';
 
 

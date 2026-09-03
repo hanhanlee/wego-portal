@@ -2,10 +2,11 @@ import {commonPortal, classPortals} from './portal-data.js';
 
 // 更新日期來自已核對的發布紀錄，與活動日期分開；同一內容用相同 contentId。
 export const updates = [
+  {id:'teacher-note-20260903',contentId:'teacher-20260903-important',scope:'vwej3',updatedAt:'2026-09-03',category:'導師通知',type:'新增',title:'9/3 導師重要通知',summary:'班書每週四帶回閱讀、星期一繳回，以及中英複習班第 1 週安親卷留存與複習提醒。',path:'/teacher-notes'},
   {id:'common-learning-notices-20260902',contentId:'common-learning-notices',scope:'common',updatedAt:'2026-09-02',category:'學習資訊',type:'新增',title:'外語音檔與表演藝術課提醒',summary:'查看英、日語課本音檔使用步驟及低年級表演藝術課安全服裝準備。',path:'/learning'},
   {id:'daily-schedule-20260901',contentId:'daily-schedule-115',scope:'common',updatedAt:'2026-09-01',category:'學校事務',type:'新增',title:'115學年度每日作息時間表',summary:'晨間閱讀、上下課、午餐午休、放學與課後安親時段集中查閱。',path:'/school/daily'},
   {id:'site-search-20260901',contentId:'site-search',scope:'common',updatedAt:'2026-09-01',category:'網站功能',type:'新增',title:'新增全文關鍵字搜尋',summary:'可搜尋已整理的作業、通知、日期、學習與校務內容。',path:'/search'},
-  {id:'contact-book-20260901',contentId:'contact-book-daily',scope:'vwej3',updatedAt:'2026-09-01',category:'每日聯絡簿',type:'新增',title:'8/31、9/1 每日聯絡簿',summary:'作業、繳交資料、明日準備與導師提醒集中查閱。',path:'/contact-book'},
+  {id:'contact-book-20260901',contentId:'contact-book-daily',scope:'vwej3',updatedAt:'2026-09-03',category:'每日聯絡簿',type:'更新',title:'新增 9/2、9/3 每日聯絡簿',summary:'國語、英語、班書與珠算作業，以及服裝、學用品和學習提醒。',path:'/contact-book'},
   {id:'traffic-guidance-20260901',contentId:'traffic-guidance-20260901',scope:'common',updatedAt:'2026-09-01',category:'接送資訊',type:'新增',title:'上放學交通宣導注意事項',summary:'校門口行車、下車、車接時間與接送方式變更提醒。',path:'/school/transport'},
   {id:'morning-speech-common-20260901',contentId:'morning-speech-115s1',scope:'common',updatedAt:'2026-09-01',category:'學習資訊',type:'新增',title:'晨間演說進行方式',summary:'整理分組、抽籤、朗讀／演說與期末獎狀規則。',path:'/learning'},
   {id:'morning-speech-vwej3-20260901',contentId:'morning-speech-115s1',scope:'vwej3',updatedAt:'2026-09-01',category:'班級行程',type:'新增',title:'一忠晨間演說分組日期',summary:'六組日期為 9/16 至 11/18，並已加入一忠行事曆。',path:'/learning'},

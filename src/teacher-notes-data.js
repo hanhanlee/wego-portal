@@ -3,6 +3,16 @@
 // Entry shape: {id, date:'YYYY-MM-DD', title, paragraphs:[], action?, dueDate?}.
 export const classTeacherNotes = {vwej3: [
   {
+    id: 'teacher-20260903-important',
+    date: '2026-09-03',
+    title: '9/3 重要通知：班書與中英複習班安親卷',
+    paragraphs: [
+      '帶班書返家閱讀，請愛惜書本，並於下星期一帶回學校。之後固定每週四帶班書回家閱讀，星期一再帶回學校交給老師。',
+      '中英複習班今天帶回第 1 週安親卷，請將發回的安親卷留在家中保存，並協助孩子複習題型。'
+    ],
+    action: '閱讀並妥善保管班書，下星期一帶回；中英複習班安親卷留在家中並複習題型。'
+  },
+  {
     id: 'teacher-20260831-important',
     date: '2026-08-31',
     title: '8/31 重要通知：資料保管、服裝與學用品提醒',
