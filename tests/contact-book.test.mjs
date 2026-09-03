@@ -13,9 +13,9 @@ test('9/2 與 9/3 聯絡簿保留可查閱的核心作業與準備事項',()=>{
   const entries=classContactBooks.vwej3;
   const sep2=entries.find(entry=>entry.date==='2026-09-02');
   const sep3=entries.find(entry=>entry.date==='2026-09-03');
-  assert.ok(sep2.homework.some(item=>item.includes('EP.14')));
+  assert.ok(sep2.homework.includes('每天都有全校共同閱讀的時間，請準備一本中文課外書。'));
   assert.ok(sep2.notes.some(item=>item.includes('數位學生證')));
-  assert.ok(sep3.homework.some(item=>item.includes('珠算口訣')));
+  assert.ok(sep3.homework.includes('寫注音習寫簿 P8、P9。以後簡稱「娃娃本」。'));
   assert.ok(sep3.tomorrow.some(item=>item.includes('防滑襪')));
 });
 
