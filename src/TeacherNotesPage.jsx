@@ -2,6 +2,8 @@ import React from 'react';
 import {ChatText} from '@phosphor-icons/react';
 import {contextualHref} from './routing.js';
 
+const noteImages=note=>note.images||(note.image?[note.image]:[]);
+
 export default function TeacherNotesPage({notes,ctx}) {
   const ordered=notes.toSorted((a,b)=>b.date.localeCompare(a.date));
   return <>
@@ -12,7 +14,7 @@ export default function TeacherNotesPage({notes,ctx}) {
       <div><h2>{note.title}</h2>{note.paragraphs.map((p,i)=><p key={i}>{p}</p>)}
         {note.action?<p className="context-note"><strong>家長配合事項：</strong>{note.action}</p>:null}
         {note.dueDate?<p><strong>截止日期：</strong><time dateTime={note.dueDate}>{note.dueDate.replaceAll('-','/')}</time></p>:null}
-        {note.image?<figure className="teacher-note-image"><a href={`${import.meta.env.BASE_URL}${note.image.path}`} target="_blank" rel="noopener noreferrer" aria-label="開啟通知附圖（另開分頁）"><img src={`${import.meta.env.BASE_URL}${note.image.path}`} alt={note.image.alt} loading="lazy"/></a><figcaption>{note.image.caption}點圖可放大查看。</figcaption></figure>:null}
+        {noteImages(note).map(image=><figure className="teacher-note-image" key={image.path}><a href={`${import.meta.env.BASE_URL}${image.path}`} target="_blank" rel="noopener noreferrer" aria-label={`開啟${image.alt}（另開分頁）`}><img src={`${import.meta.env.BASE_URL}${image.path}`} alt={image.alt} loading="lazy"/></a><figcaption>{image.caption}點圖可放大查看。</figcaption></figure>)}
         <small className="source">來源：導師 LINE 通知（重點整理）</small>
       </div>
     </article>)}</section>:<section className="teacher-notes-empty"><ChatText aria-hidden="true"/><h2>目前尚無聯絡事項紀錄</h2><p>後續整理的導師通知會顯示在這裡，方便依日期查閱。</p></section>}
