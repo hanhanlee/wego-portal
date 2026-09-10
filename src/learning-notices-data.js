@@ -1,5 +1,15 @@
 export const learningNotices = [
   {
+    id:'kang-hsuan-chinese-1a-audio',
+    title:'康軒版國語 1 上｜課文輕鬆聽',
+    summary:'國小一年級上學期國語（含首冊）可搭配康軒「課文輕鬆聽 APP」，聆聽課文朗讀與故事，在家預習、複習。',
+    details:['開啟康軒官方介紹頁，依手機或平板系統下載 APP','在 APP 選取康軒版國小國語一年級上學期對應課本','下載所需音檔後，即可聆聽，也可離線使用'],
+    note:'收聽請使用 iPhone／iPad 或 Android 手機、平板安裝 APP。桌機瀏覽器可查看介紹頁，但該頁不提供直接播放音檔；Windows 電腦請改用手機或平板。App Store 另列支援 macOS 11 以上、M1 或更新晶片的 Mac，但標示未經 macOS 驗證。',
+    href:'https://qr.knsh.com.tw/WH5TR',
+    linkLabel:'前往康軒課文輕鬆聽',
+    source:'康軒版國小國語 1 上學習自修書封・康軒官方介紹',
+  },
+  {
     id:'foreign-language-audio-guide',
     title:'英、日語課本音檔使用方式',
     summary:'英語與日語教科書原 CD 音檔已放在學校官網，方便孩子在家聆聽複習。',

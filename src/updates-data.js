@@ -2,6 +2,7 @@ import {commonPortal, classPortals} from './portal-data.js';
 
 // 更新日期來自已核對的發布紀錄，與活動日期分開；同一內容用相同 contentId。
 export const updates = [
+  {id:'chinese-audio-20260910',contentId:'kang-hsuan-chinese-1a-audio',scope:'common',updatedAt:'2026-09-10',category:'學習資源',type:'新增',title:'康軒版國語 1 上課文音檔入口',summary:'由康軒官方入口下載課文輕鬆聽 APP，選取課本後聆聽課文與故事。',path:'/learning'},
   {id:'teacher-note-20260904',contentId:'teacher-20260904',scope:'vwej3',updatedAt:'2026-09-04',category:'導師通知',type:'新增',title:'9/4 導師聯絡事項',summary:'開學第一週習慣、大白本與學生證保管，以及注音學習和下週一平測、聽寫提醒。',path:'/teacher-notes'},
   {id:'teacher-note-20260903',contentId:'teacher-20260903-important',scope:'vwej3',updatedAt:'2026-09-03',category:'導師通知',type:'新增',title:'9/3 導師重要通知',summary:'班書每週四帶回閱讀、星期一繳回，以及中英複習班第 1 週安親卷留存與複習提醒。',path:'/teacher-notes'},
   {id:'common-learning-notices-20260902',contentId:'common-learning-notices',scope:'common',updatedAt:'2026-09-02',category:'學習資訊',type:'新增',title:'外語音檔與表演藝術課提醒',summary:'查看英、日語課本音檔使用步驟及低年級表演藝術課安全服裝準備。',path:'/learning'},

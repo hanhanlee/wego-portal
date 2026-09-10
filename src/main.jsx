@@ -28,7 +28,7 @@ import {classContactBooks} from './contact-book-data.js';
 import SearchPage from './SearchPage.jsx';
 import {COMMON_ORIGIN, defaultClassForHost, routeForLocation, contextualHref} from './routing.js';
 
-const UPDATED='2026年9月4日';
+const UPDATED='2026年9月10日';
 const COMMON_TITLE='Wego小一小鈴鐺資訊站';
 
 
@@ -191,9 +191,9 @@ function LearningPage({d,ctx}){
     <MorningSpeechSection ctx={ctx}/>
     <section className="learning-notices-section">
       <SectionTitle icon={GraduationCap}>課程資源與準備</SectionTitle>
-      <p className="section-intro">外語在家練習與表演藝術課安全提醒。</p>
+      <p className="section-intro">國語、外語在家練習資源與表演藝術課安全提醒。</p>
       <div className="learning-notices-grid">{learningNotices.map(item=><article className="learning-notice-card" key={item.id}>
-        <a className="learning-notice-image" href={item.image} target="_blank" rel="noreferrer"><img src={item.image} alt={item.alt} loading="lazy"/><span>點圖查看完整尺寸</span></a>
+        {item.image&&<a className="learning-notice-image" href={item.image} target="_blank" rel="noreferrer"><img src={item.image} alt={item.alt} loading="lazy"/><span>點圖查看完整尺寸</span></a>}
         <div className="learning-notice-copy"><h3>{item.title}</h3><p>{item.summary}</p><ol>{item.details.map(detail=><li key={detail}>{detail}</li>)}</ol>{item.note&&<p className="learning-notice-note">{item.note}</p>}{item.href&&<a className="outline-button" href={item.href} target="_blank" rel="noopener noreferrer">{item.linkLabel}<CaretRight/></a>}<Source>{item.source}</Source></div>
       </article>)}</div>
     </section>
