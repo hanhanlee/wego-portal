@@ -8,7 +8,7 @@ export const updates = [
   {id:'common-learning-notices-20260902',contentId:'common-learning-notices',scope:'common',updatedAt:'2026-09-02',category:'學習資訊',type:'新增',title:'外語音檔與表演藝術課提醒',summary:'查看英、日語課本音檔使用步驟及低年級表演藝術課安全服裝準備。',path:'/learning'},
   {id:'daily-schedule-20260901',contentId:'daily-schedule-115',scope:'common',updatedAt:'2026-09-01',category:'學校事務',type:'新增',title:'115學年度每日作息時間表',summary:'晨間閱讀、上下課、午餐午休、放學與課後安親時段集中查閱。',path:'/school/daily'},
   {id:'site-search-20260901',contentId:'site-search',scope:'common',updatedAt:'2026-09-01',category:'網站功能',type:'新增',title:'新增全文關鍵字搜尋',summary:'可搜尋已整理的作業、通知、日期、學習與校務內容。',path:'/search'},
-  {id:'contact-book-20260901',contentId:'contact-book-daily',scope:'vwej3',updatedAt:'2026-09-04',category:'每日聯絡簿',type:'更新',title:'新增 9/4 每日聯絡簿',summary:'注音、國語、英文作業、家長簽名項目、下週一服裝與愛閱讀存摺。',path:'/contact-book'},
+  {id:'contact-book-20260901',contentId:'contact-book-daily',scope:'vwej3',updatedAt:'2026-09-10',category:'每日聯絡簿',type:'更新',title:'新增 9/7–9/10 每日聯絡簿',summary:'補上第二週四天的國語、數學、英文作業與準備、簽回及學習提醒。',path:'/contact-book'},
   {id:'traffic-guidance-20260901',contentId:'traffic-guidance-20260901',scope:'common',updatedAt:'2026-09-01',category:'接送資訊',type:'新增',title:'上放學交通宣導注意事項',summary:'校門口行車、下車、車接時間與接送方式變更提醒。',path:'/school/transport'},
   {id:'morning-speech-common-20260901',contentId:'morning-speech-115s1',scope:'common',updatedAt:'2026-09-01',category:'學習資訊',type:'新增',title:'晨間演說進行方式',summary:'整理分組、抽籤、朗讀／演說與期末獎狀規則。',path:'/learning'},
   {id:'morning-speech-vwej3-20260901',contentId:'morning-speech-115s1',scope:'vwej3',updatedAt:'2026-09-01',category:'班級行程',type:'新增',title:'一忠晨間演說分組日期',summary:'六組日期為 9/16 至 11/18，並已加入一忠行事曆。',path:'/learning'},
