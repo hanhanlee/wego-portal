@@ -45,3 +45,26 @@ test('共通學習通知可搜尋且不帶出班級來源',()=>{
   assert.ok(searchRecords(records,'日語 教科書 音檔').some(record=>record.title==='英、日語課本音檔使用方式'));
   assert.equal(records.filter(record=>record.id.startsWith('learning-')).some(record=>record.searchText.includes('一忠')),false);
 });
+
+test('共通搜尋可找到學校日電子手冊通知',()=>{
+  const records=buildSearchRecords({kind:'common'},extras);
+  const results=searchRecords(records,'學校日 電子手冊');
+  assert.equal(results.length,1);
+  assert.equal(results[0].path,'/notices/wego-schoolday-notice-115s1');
+});
+
+test('共通搜尋可找到 NIAS 流感疫苗簽署通知',()=>{
+  const records=buildSearchRecords({kind:'common'},extras);
+  const results=searchRecords(records,'流感疫苗 同意 不同意');
+  assert.ok(results.some(result=>result.path==='/notices/wego-flu-vaccine-consent-115'));
+  assert.ok(results.some(result=>result.path==='/calendar/wego-flu-consent-deadline-115'));
+});
+
+test('下週考試通知與行程只可在一忠搜尋',()=>{
+  const classRecords=buildSearchRecords({kind:'class',slug:'vwej3',label:'一忠'},extras);
+  assert.ok(searchRecords(classRecords,'注音1本第二課').some(result=>result.path==='/teacher-notes'));
+  assert.ok(searchRecords(classRecords,'數學第一單元平測').some(result=>result.path==='/calendar/vwej3-math-unit-1-test-20260915'));
+  const commonRecords=buildSearchRecords({kind:'common'},extras);
+  assert.equal(searchRecords(commonRecords,'注音1本第二課').length,0);
+  assert.equal(searchRecords(commonRecords,'數學第一單元平測').length,0);
+});

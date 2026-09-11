@@ -6,6 +6,7 @@ import {
   mergeById,
   resolvePortalData
 } from '../src/portal-data.js';
+import {classTeacherNotes} from '../src/teacher-notes-data.js';
 
 test('共通資料不包含一忠專屬內容',()=>{
   const common=resolvePortalData();
@@ -47,4 +48,48 @@ test('一忠 ICS 同時包含共通與班級事件',()=>{
 
 test('未知班級不回傳其他班級資料',()=>{
   assert.equal(resolvePortalData('unknown'),null);
+});
+
+test('學校日通知與行事曆使用同一活動時間並保留下載期限',()=>{
+  const notice=commonPortal.notices.find(item=>item.id==='wego-schoolday-notice-115s1');
+  const event=commonPortal.events.find(item=>item.uid==='wego-schoolday-115s1');
+  assert.equal(notice.date,'9/19（六）08:40–11:40');
+  assert.equal(notice.expiresOn,'2026-09-30');
+  assert.equal(notice.link.url,'https://www.wgps.tp.edu.tw/registered/school_day_index.asp');
+  assert.equal(notice.image.path,'assets/references/school-day/school-day-invitation-20260919.jpg');
+  assert.equal(event.d,notice.date);
+  assert.equal(event.sequence,2);
+});
+
+test('流感疫苗簽署通知與兩筆重要日期只加入共通資料一次',()=>{
+  const notice=commonPortal.notices.find(item=>item.id==='wego-flu-vaccine-consent-115');
+  assert.equal(notice.expiresOn,'2026-09-30');
+  assert.equal(new URL(notice.link.url).hostname,'nias-school-survey.cdc.gov.tw');
+  assert.ok(notice.paragraphs.some(item=>item.includes('同意或不同意皆需簽署')));
+  const ids=commonPortal.events.map(item=>item.uid);
+  assert.equal(ids.filter(id=>id==='wego-flu-consent-deadline-115').length,1);
+  assert.equal(ids.filter(id=>id==='wego-flu-vaccination-115').length,1);
+  assert.ok(resolvePortalData('vwej3').notices.some(item=>item.id===notice.id));
+});
+
+test('9/11 導師考試通知照錄並只加入一忠行事曆',()=>{
+  const note=classTeacherNotes.vwej3.find(item=>item.id==='teacher-20260911-next-week-tests');
+  assert.equal(note.verbatim,true);
+  assert.deepEqual(note.paragraphs,[
+    '🔔下週考試科目與範圍','🔺週一：','國語(二)平測+聽寫','＊聽寫範圍：注音1本第二課。',
+    '＊每週皆有國語平測+聽寫，請利用假日多做練習。','＊國語課本中的每一個插圖名稱，也都是要熟練的語詞。',
+    '🔺週二：','數學第一單元平測','英U1 SW 5-8','🔺週三：','英U1 Quiz','🔺週四：',
+    '國語(三)平測+聽寫','＊聽寫範圍：注音1本第三課','請利用假日提早準備喔！'
+  ]);
+  const expected=[
+    'vwej3-chinese-lesson-2-test-20260914','vwej3-math-unit-1-test-20260915',
+    'vwej3-english-u1-sw-5-8-20260915','vwej3-english-u1-quiz-20260916',
+    'vwej3-chinese-lesson-3-test-20260917'
+  ];
+  const commonIds=new Set(resolvePortalData().events.map(item=>item.uid));
+  const classIds=new Set(resolvePortalData('vwej3').events.map(item=>item.uid));
+  for(const id of expected){
+    assert.equal(commonIds.has(id),false);
+    assert.equal(classIds.has(id),true);
+  }
 });

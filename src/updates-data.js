@@ -2,6 +2,9 @@ import {commonPortal, classPortals} from './portal-data.js';
 
 // 更新日期來自已核對的發布紀錄，與活動日期分開；同一內容用相同 contentId。
 export const updates = [
+  {id:'teacher-note-tests-20260911',contentId:'teacher-20260911-next-week-tests',scope:'vwej3',updatedAt:'2026-09-11',category:'導師通知',type:'新增',title:'9/11 下週考試科目與範圍',summary:'9/14–9/17 國語、數學與英文平測、聽寫及 Quiz，並已加入一忠行事曆。',path:'/teacher-notes'},
+  {id:'school-day-20260911',contentId:'school-day-115s1',scope:'common',updatedAt:'2026-09-11',category:'校務通知',type:'更新',noticeId:'wego-schoolday-notice-115s1',summary:'9/19（六）08:40–11:40 舉行；查看邀請卡，並於 9/30 前下載學校日電子手冊。'},
+  {id:'flu-vaccine-20260911',contentId:'flu-vaccine-consent-115',scope:'common',updatedAt:'2026-09-11',category:'健康通知',type:'新增',noticeId:'wego-flu-vaccine-consent-115',summary:'9/30（三）17:00 前完成 NIAS 接種意願簽署；校園接種日為 10/16（五）。'},
   {id:'chinese-audio-20260910',contentId:'kang-hsuan-chinese-1a-audio',scope:'common',updatedAt:'2026-09-10',category:'學習資源',type:'新增',title:'康軒版國語 1 上課文音檔入口',summary:'由康軒官方入口下載課文輕鬆聽 APP，選取課本後聆聽課文與故事。',path:'/learning'},
   {id:'teacher-note-20260904',contentId:'teacher-20260904',scope:'vwej3',updatedAt:'2026-09-04',category:'導師通知',type:'新增',title:'9/4 導師聯絡事項',summary:'開學第一週習慣、大白本與學生證保管，以及注音學習和下週一平測、聽寫提醒。',path:'/teacher-notes'},
   {id:'teacher-note-20260903',contentId:'teacher-20260903-important',scope:'vwej3',updatedAt:'2026-09-03',category:'導師通知',type:'新增',title:'9/3 導師重要通知',summary:'班書每週四帶回閱讀、星期一繳回，以及中英複習班第 1 週安親卷留存與複習提醒。',path:'/teacher-notes'},

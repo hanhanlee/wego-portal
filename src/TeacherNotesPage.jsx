@@ -15,7 +15,7 @@ export default function TeacherNotesPage({notes,ctx}) {
         {note.action?<p className="context-note"><strong>家長配合事項：</strong>{note.action}</p>:null}
         {note.dueDate?<p><strong>截止日期：</strong><time dateTime={note.dueDate}>{note.dueDate.replaceAll('-','/')}</time></p>:null}
         {noteImages(note).map(image=><figure className="teacher-note-image" key={image.path}><a href={`${import.meta.env.BASE_URL}${image.path}`} target="_blank" rel="noopener noreferrer" aria-label={`開啟${image.alt}（另開分頁）`}><img src={`${import.meta.env.BASE_URL}${image.path}`} alt={image.alt} loading="lazy"/></a><figcaption>{image.caption}點圖可放大查看。</figcaption></figure>)}
-        <small className="source">來源：導師 LINE 通知（重點整理）</small>
+        <small className="source">來源：導師 LINE 通知（{note.verbatim?'原文照錄':'重點整理'}）</small>
       </div>
     </article>)}</section>:<section className="teacher-notes-empty"><ChatText aria-hidden="true"/><h2>目前尚無聯絡事項紀錄</h2><p>後續整理的導師通知會顯示在這裡，方便依日期查閱。</p></section>}
     <a className="text-link" href={contextualHref('/notices',ctx,location.hostname)}>查看其他通知公告</a>

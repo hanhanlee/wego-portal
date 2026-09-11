@@ -3,6 +3,29 @@
 // Entry shape: {id, date:'YYYY-MM-DD', title, paragraphs:[], action?, dueDate?}.
 export const classTeacherNotes = {vwej3: [
   {
+    id: 'teacher-20260911-next-week-tests',
+    date: '2026-09-11',
+    title: '9/11 下週考試科目與範圍',
+    verbatim: true,
+    paragraphs: [
+      '🔔下週考試科目與範圍',
+      '🔺週一：',
+      '國語(二)平測+聽寫',
+      '＊聽寫範圍：注音1本第二課。',
+      '＊每週皆有國語平測+聽寫，請利用假日多做練習。',
+      '＊國語課本中的每一個插圖名稱，也都是要熟練的語詞。',
+      '🔺週二：',
+      '數學第一單元平測',
+      '英U1 SW 5-8',
+      '🔺週三：',
+      '英U1 Quiz',
+      '🔺週四：',
+      '國語(三)平測+聽寫',
+      '＊聽寫範圍：注音1本第三課',
+      '請利用假日提早準備喔！'
+    ]
+  },
+  {
     id: 'teacher-20260904-first-week-reminders',
     date: '2026-09-04',
     title: '9/4 開學第一週重要提醒',
