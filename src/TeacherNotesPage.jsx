@@ -11,7 +11,7 @@ export default function TeacherNotesPage({notes,ctx}) {
     <p className="context-note">方便回查要準備的物品、需繳回的資料與班級活動提醒；如有調整，請以導師最新通知為準。</p>
     {ordered.length?<section className="teacher-notes" aria-label="導師通知紀錄">{ordered.map(note=><article key={note.id}>
       <time dateTime={note.date}>{note.date.replaceAll('-','/')}</time>
-      <div><h2>{note.title}</h2>{note.paragraphs.map((p,i)=><p key={i}>{p}</p>)}
+      <div><h2>{note.title}</h2>{note.paragraphs.map((p,i)=><React.Fragment key={i}><p>{p}</p>{note.link&&p==='🎬 示範影片：'?<a className="text-link" href={note.link.url} target="_blank" rel="noopener noreferrer">{note.link.label}</a>:null}</React.Fragment>)}
         {note.action?<p className="context-note"><strong>家長配合事項：</strong>{note.action}</p>:null}
         {note.dueDate?<p><strong>截止日期：</strong><time dateTime={note.dueDate}>{note.dueDate.replaceAll('-','/')}</time></p>:null}
         {noteImages(note).map(image=><figure className="teacher-note-image" key={image.path}><a href={`${import.meta.env.BASE_URL}${image.path}`} target="_blank" rel="noopener noreferrer" aria-label={`開啟${image.alt}（另開分頁）`}><img src={`${import.meta.env.BASE_URL}${image.path}`} alt={image.alt} loading="lazy"/></a><figcaption>{image.caption}點圖可放大查看。</figcaption></figure>)}

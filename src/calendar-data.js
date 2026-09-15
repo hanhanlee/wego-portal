@@ -62,6 +62,7 @@ export const classes={
     events:[
       ...homeworkEvents('vwej3'),
       ...morningSpeechEvents('vwej3'),
+      {uid:'vwej3-health-check-20260917',d:'9/17（四）',title:'一年級健康檢查',detail:'當天穿體育服；因檢查需脫鞋，請將白色運動鞋標示姓名。9/18（五）穿方便運動的便服。尚未帶牙刷者，請於 9/16（三）帶到學校。',source:'一忠導師 LINE 通知（2026-09-15）',start:'2026-09-17',end:'2026-09-17'},
       {uid:'vwej3-chinese-lesson-2-test-20260914',d:'9/14（一）',title:'國語(二)平測+聽寫',detail:'聽寫範圍：注音1本第二課。每週皆有國語平測+聽寫，請利用假日多做練習。國語課本中的每一個插圖名稱，也都是要熟練的語詞。',source:'一忠導師 LINE 通知（2026-09-11）',start:'2026-09-14',end:'2026-09-14'},
       {uid:'vwej3-math-unit-1-test-20260915',d:'9/15（二）',title:'數學第一單元平測',detail:'請利用假日提早準備。',source:'一忠導師 LINE 通知（2026-09-11）',start:'2026-09-15',end:'2026-09-15'},
       {uid:'vwej3-english-u1-sw-5-8-20260915',d:'9/15（二）',title:'英U1 SW 5-8',detail:'請利用假日提早準備。',source:'一忠導師 LINE 通知（2026-09-11）',start:'2026-09-15',end:'2026-09-15'},
