@@ -68,3 +68,11 @@ test('下週考試通知與行程只可在一忠搜尋',()=>{
   assert.equal(searchRecords(commonRecords,'注音1本第二課').length,0);
   assert.equal(searchRecords(commonRecords,'數學第一單元平測').length,0);
 });
+
+test('學校日座談會班級提醒只可在一忠搜尋',()=>{
+  const classRecords=buildSearchRecords({kind:'class',slug:'vwej3',label:'一忠'},extras);
+  const results=searchRecords(classRecords,'一枝原子筆 自備茶水');
+  assert.ok(results.some(result=>result.path==='/teacher-notes'));
+  const commonRecords=buildSearchRecords({kind:'common'},extras);
+  assert.equal(searchRecords(commonRecords,'一枝原子筆 自備茶水').length,0);
+});

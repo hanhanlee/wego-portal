@@ -3,6 +3,22 @@
 // Entry shape: {id, date:'YYYY-MM-DD', title, paragraphs:[], action?, dueDate?}.
 export const classTeacherNotes = {vwej3: [
   {
+    id: 'teacher-20260918-school-day-reminder',
+    date: '2026-09-18',
+    title: '9/19 學校日座談會提醒',
+    verbatim: true,
+    paragraphs: [
+      '各位家長：您好！',
+      '關於明天的座談會，有以下提醒喔！',
+      '1️⃣校園開放入校時間為8:40，一年級家長請直接至五樓活動中心。',
+      '2️⃣校園不開放停車，敬請搭乘大眾交通工具，開車者請使用學校鄰近停車空間。',
+      '3️⃣教室空間有限，建議一位家長參加，也因活動屬於座談會，小孩建議委託其他家人照顧喔！',
+      '4️⃣當天教室搭配期許卡活動，敬請各位家長隨身攜帶一枝原子筆，並請自備茶水，一起愛護地球。',
+      '5️⃣活動預計11:30結束，敬請家長安排週末午後的家庭歡聚時光。',
+      '感謝您的配合♥️'
+    ]
+  },
+  {
     id: 'teacher-20260915-morning-reading',
     date: '2026-09-15',
     title: '中、英文晨間朗讀',
