@@ -1,3 +1,4 @@
+import {schoolDayEvents,schoolDayEventDetails} from './school-day-20260919.js';
 import {homeworkEvents} from './homework-calendar.js';
 import {morningSpeechEvents} from './morning-speech-data.js';
 // 行事曆事件的單一真實來源：網站畫面與 .ics 訂閱 feed 都由此產生，避免兩套資料不同步。
@@ -61,6 +62,8 @@ export const classes={
     label:'一忠',
     events:[
       ...homeworkEvents('vwej3'),
+      ...schoolDayEvents,
+      ...common.events.filter(event=>schoolDayEventDetails[event.uid]).map(event=>({...event,...schoolDayEventDetails[event.uid]})),
       ...morningSpeechEvents('vwej3'),
       {uid:'vwej3-health-check-20260917',d:'9/17（四）',title:'一年級健康檢查',detail:'當天穿體育服；因檢查需脫鞋，請將白色運動鞋標示姓名。9/18（五）穿方便運動的便服。尚未帶牙刷者，請於 9/16（三）帶到學校。',source:'一忠導師 LINE 通知（2026-09-15）',start:'2026-09-17',end:'2026-09-17'},
       {uid:'vwej3-chinese-lesson-2-test-20260914',d:'9/14（一）',title:'國語(二)平測+聽寫',detail:'聽寫範圍：注音1本第二課。每週皆有國語平測+聽寫，請利用假日多做練習。國語課本中的每一個插圖名稱，也都是要熟練的語詞。',source:'一忠導師 LINE 通知（2026-09-11）',start:'2026-09-14',end:'2026-09-14'},

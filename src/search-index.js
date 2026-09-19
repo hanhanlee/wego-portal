@@ -39,7 +39,7 @@ export function buildSearchRecords(ctx,extras={}){
 
   if(slug){
     for(const row of morningSpeech.schedules[slug]||[]) add({id:`speech-${slug}-${row.order}`,scope:'class',category:'班級行程',title:`晨間演說｜${row.group}${row.language}第 ${row.session} 次朗讀`,body:`座號 ${row.seatNumbers.join('、')}；順序 ${row.order} ${row.week}`,date:row.iso,source:'小鈴鐺群組',path:`/calendar/${slug}-morning-speech-order-${row.order}-115s1`,seatNumbers:row.seatNumbers});
-    for(const note of classTeacherNotes[slug]||[]) add({id:`teacher-${note.id}`,scope:'class',category:'導師聯絡',title:note.title,body:`${join(note.paragraphs)} ${note.action||''}`,date:note.date,source:'導師 LINE 通知',path:'/teacher-notes'});
+    for(const note of classTeacherNotes[slug]||[]) add({id:`teacher-${note.id}`,scope:'class',category:'導師聯絡',title:note.title,body:`${join(note.paragraphs)} ${(note.sections||[]).map(section=>`${section.title} ${join(section.items)}`).join(' ')} ${note.action||''}`,date:note.date,source:note.source||'導師 LINE 通知',path:'/teacher-notes'});
     for(const entry of classContactBooks[slug]||[]) add({id:`book-${entry.id}`,scope:'class',category:'每日聯絡簿',title:`${Number(entry.date.slice(5,7))}/${Number(entry.date.slice(8,10))} 每日聯絡簿`,body:[entry.homework,entry.returns,entry.tomorrow,entry.reminders,entry.notes].flat().filter(Boolean).join(' '),date:entry.date,source:entry.source,path:`/contact-book/${entry.date}`});
     for(const day of homeworkDays(classHomework[slug])) add({id:`homework-${day.date}`,scope:'class',category:'英文作業',title:`${Number(day.date.slice(5,7))}/${Number(day.date.slice(8,10))} 英文作業`,body:join(day.items),date:day.date,source:day.source,path:'/homework'});
     const timetable=classTimetables[slug];

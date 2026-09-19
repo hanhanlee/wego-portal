@@ -1,7 +1,9 @@
+import {schoolDayNote} from './school-day-20260919.js';
 // Only reviewed, de-identified teacher announcements belong here.
 // Raw LINE messages and identifying information stay in the private repository.
 // Entry shape: {id, date:'YYYY-MM-DD', title, paragraphs:[], action?, dueDate?}.
 export const classTeacherNotes = {vwej3: [
+  schoolDayNote,
   {
     id: 'teacher-20260918-school-day-reminder',
     date: '2026-09-18',
