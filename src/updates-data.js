@@ -2,6 +2,27 @@ import {commonPortal, classPortals} from './portal-data.js';
 
 // 更新日期來自已核對的發布紀錄，與活動日期分開；同一內容用相同 contentId。
 export const updates = [
+{
+  "id": "contact-book-20261004",
+  "contentId": "contact-book-daily",
+  "scope": "vwej3",
+  "updatedAt": "2026-10-04",
+  "category": "每日聯絡簿",
+  "type": "更新",
+  "title": "新增 9/21–10/2 八天聯絡簿",
+  "summary": "逐句收錄作業與導師叮嚀，補入明確考試、活動與繳回期限；塗氟日期更正為 9/23。",
+  "path": "/contact-book"
+},
+{
+  "id": "autumn-holidays-20261004",
+  "contentId": "autumn-holidays-115",
+  "scope": "common",
+  "updatedAt": "2026-10-04",
+  "category": "日期行程",
+  "type": "補充",
+  "noticeId": "wego-autumn-holidays-115",
+  "summary": "9/25–9/28 連假四天；10/9–10/11 國慶連假三天，行事曆同步補充。"
+},
   {id:'school-day-class-20260919',contentId:'teacher-20260919-school-day',scope:'vwej3',updatedAt:'2026-09-19',category:'學校日',type:'新增',title:'忠班學校日｜課程、生活提醒與學期活動',summary:'整理教材簿本、評量、服裝、健康檢查及學期活動，重要日期已補入班級行事曆。',path:'/teacher-notes'},
   {id:'teacher-schoolday-reminder-20260918',contentId:'teacher-20260918-school-day-reminder',scope:'vwej3',updatedAt:'2026-09-18',category:'導師通知',type:'新增',title:'9/19 學校日座談會提醒',summary:'8:40 入校，一年級家長至五樓活動中心；請自備原子筆與茶水，校園不開放停車。',path:'/teacher-notes'},
   {id:'teacher-morning-reading-20260915',contentId:'teacher-20260915-morning-reading',scope:'vwej3',updatedAt:'2026-09-15',category:'導師通知',type:'新增',title:'中、英文晨間朗讀練習與示範影片',summary:'陪孩子觀摩示範影片，練習語音、語調與上臺儀態。',path:'/teacher-notes'},

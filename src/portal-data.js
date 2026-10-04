@@ -8,6 +8,18 @@ export const commonPortal={
     {id:'wego-final-115',date:'1/12–13',title:'期末學力檢測',source:'學校行事曆',start:'2027-01-12'}
   ],
   notices:[
+{
+  "id": "wego-autumn-holidays-115",
+  "date": "9/25–9/28、10/9–10/11",
+  "title": "中秋節、教師節與國慶日連假提醒",
+  "source": "學校行事曆、導師通知",
+  "start": "2026-10-09",
+  "expiresOn": "2026-10-11",
+  "paragraphs": [
+    "9/25（五）至 9/28（一）中秋節、教師節連假四天。",
+    "10/9（五）國慶日調整放假，至 10/11（日）連假三天。"
+  ]
+},
     {id:'wego-open-notice-115s1',date:'8/31',title:'第一學期開學',source:'學校行事曆',start:'2026-08-31'},
     {id:'wego-pickup-pass-reissue-115s1',expiresOn:'2026-09-02',date:'8/31–9/2',title:'車家接證補發申請',source:'薇閣小學學務處',start:'2026-08-31',
       paragraphs:[

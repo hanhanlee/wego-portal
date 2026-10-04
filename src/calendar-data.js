@@ -1,3 +1,4 @@
+import {contactBookEvents,contactBookEventDetails} from './contact-book-events-20261004.js';
 import {schoolDayEvents,schoolDayEventDetails} from './school-day-20260919.js';
 import {homeworkEvents} from './homework-calendar.js';
 import {morningSpeechEvents} from './morning-speech-data.js';
@@ -22,11 +23,11 @@ export const common={
     {"uid":"wego-after-school-115s1","d":"9/2","title":"課後學藝營及多元分組課程開始","detail":"本項公告放學時間：車接、家接 15:50；校車 15:40、16:40。","source":"學校行事曆","start":"2026-09-02","end":"2026-09-02"},
     {"uid":"wego-bus-fee-due-115s1","d":"9/3","title":"校車交通費繳費截止","detail":"請於今日繳交完畢。","source":"學校行事曆","start":"2026-09-03","end":"2026-09-03"},
     {"uid":"wego-schoolday-115s1","d":"9/19（六）08:40–11:40","title":"115學年度學校日","detail":"08:40–08:50 喜相逢；08:50–09:00 校長致詞；09:00–10:00 親職教育講座；10:00–11:30 班級經營、教育理念報告；11:30–11:40 溫馨提醒、活動總結。一年級學生家長請前往活動中心，其他年級學生家長前往各班教室。當日校園不開放停車，建議搭乘大眾交通工具或使用校園鄰近停車空間，並請自備飲水。","source":"薇閣小學學校日邀請卡（2026-09-11）","start":"2026-09-19","end":"2026-09-19","sequence":2},
-    {"uid":"wego-midautumn-115","d":"9/25","title":"中秋節放假","detail":"放假一天。","source":"學校行事曆","start":"2026-09-25","end":"2026-09-25"},
-    {"uid":"wego-teachers-day-115","d":"9/28","title":"教師節放假","detail":"放假一天。","source":"學校行事曆","start":"2026-09-28","end":"2026-09-28"},
+    {"uid":"wego-midautumn-115","d":"9/25","title":"中秋節放假","detail":"9/25（五）至 9/28（一）中秋節、教師節連假四天。","source":"學校行事曆","start":"2026-09-25","end":"2026-09-25","sequence":1},
+    {"uid":"wego-teachers-day-115","d":"9/28","title":"教師節放假","detail":"9/25（五）至 9/28（一）中秋節、教師節連假四天。","source":"學校行事曆","start":"2026-09-28","end":"2026-09-28","sequence":1},
     {"uid":"wego-flu-consent-deadline-115","d":"9/30（三）17:00 前","title":"流感疫苗接種意願線上簽署截止","detail":"同意或不同意皆需完成線上簽署；截止前可修改接種意願。若無法在校接種且有意自行前往合約醫療院所接種，請跟導師登記。","source":"導師通知（2026-09-11）","start":"2026-09-30","end":"2026-09-30","sequence":0},
     {"uid":"wego-winter-uniform-115","d":"10/6","title":"開始補訂冬季制服","detail":"由總務處負責辦理。","source":"學校行事曆","start":"2026-10-06","end":"2026-10-06"},
-    {"uid":"wego-national-day-115","d":"10/9","title":"國慶日調整放假","detail":"10/9（五）調整放假；10/10（六）國慶日。","source":"學校行事曆","start":"2026-10-09","end":"2026-10-09"},
+    {"uid":"wego-national-day-115","d":"10/9","title":"國慶日調整放假","detail":"10/9（五）調整放假；10/10（六）國慶日，至 10/11（日）連假三天。","source":"學校行事曆","start":"2026-10-09","end":"2026-10-09","sequence":1},
     {"uid":"wego-flu-vaccination-115","d":"10/16（五）","title":"公費流感疫苗校園接種","detail":"本校公費流感疫苗校園接種日；實際接種安排請依校方及導師後續通知。","source":"導師通知（2026-09-11）","start":"2026-10-16","end":"2026-10-16","sequence":0},
     {"uid":"wego-retrocession-115","d":"10/26","title":"臺灣光復節調整放假","detail":"10/25（日）臺灣光復節；10/26（一）調整放假。","source":"學校行事曆","start":"2026-10-26","end":"2026-10-26"},
     {"uid":"wego-workbooks-autumn-115","d":"10/27","title":"各科作業簿家長簽章","detail":"發各科作業簿，請家長簽章，了解學生在校學習情形。","source":"學校行事曆","start":"2026-10-27","end":"2026-10-27"},
@@ -62,9 +63,10 @@ export const classes={
     label:'一忠',
     events:[
       ...homeworkEvents('vwej3'),
-      ...schoolDayEvents,
+      ...schoolDayEvents.map(event=>({...event,...(contactBookEventDetails[event.uid]||{})})),
+      ...contactBookEvents,
       ...common.events.filter(event=>schoolDayEventDetails[event.uid]).map(event=>({...event,...schoolDayEventDetails[event.uid]})),
-      ...morningSpeechEvents('vwej3'),
+      ...morningSpeechEvents('vwej3').map(event=>({...event,...(contactBookEventDetails[event.uid]||{})})),
       {uid:'vwej3-health-check-20260917',d:'9/17（四）',title:'一年級健康檢查',detail:'當天穿體育服；因檢查需脫鞋，請將白色運動鞋標示姓名。9/18（五）穿方便運動的便服。尚未帶牙刷者，請於 9/16（三）帶到學校。',source:'一忠導師 LINE 通知（2026-09-15）',start:'2026-09-17',end:'2026-09-17'},
       {uid:'vwej3-chinese-lesson-2-test-20260914',d:'9/14（一）',title:'國語(二)平測+聽寫',detail:'聽寫範圍：注音1本第二課。每週皆有國語平測+聽寫，請利用假日多做練習。國語課本中的每一個插圖名稱，也都是要熟練的語詞。',source:'一忠導師 LINE 通知（2026-09-11）',start:'2026-09-14',end:'2026-09-14'},
       {uid:'vwej3-math-unit-1-test-20260915',d:'9/15（二）',title:'數學第一單元平測',detail:'請利用假日提早準備。',source:'一忠導師 LINE 通知（2026-09-11）',start:'2026-09-15',end:'2026-09-15'},

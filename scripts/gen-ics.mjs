@@ -11,7 +11,7 @@ const outDir=resolve(here,'../public/calendar');
 mkdirSync(outDir,{recursive:true});
 
 // 內容更新時手動調整這個時間戳（並保留各事件 uid），訂閱端便會辨識為更新。
-const DTSTAMP='20260911T000000Z';
+const DTSTAMP='20261004T000000Z';
 
 const write=(file,events,name,dtstamp=DTSTAMP)=>{
   writeFileSync(resolve(outDir,file), buildCalendar(events,{name,dtstamp}), 'utf8');
@@ -22,5 +22,5 @@ console.log('Generating calendar feeds:');
 write('wego-common.ics', commonPortal.events, `薇閣小一・${commonPortal.label}`);
 for(const [slug,cls] of Object.entries(classPortals)){
   const resolved=resolvePortalData(slug);
-  write(`class-${slug}.ics`, resolved.events, `薇閣小一・${cls.label}`, slug==='vwej3'?'20260919T000000Z':DTSTAMP);
+  write(`class-${slug}.ics`, resolved.events, `薇閣小一・${cls.label}`, slug==='vwej3'?'20261004T000000Z':DTSTAMP);
 }

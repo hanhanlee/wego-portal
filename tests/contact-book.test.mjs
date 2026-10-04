@@ -4,8 +4,8 @@ import {classContactBooks,contactBookMonths} from '../src/contact-book-data.js';
 
 test('一忠聯絡簿依穩定日期收錄且月份可擴充',()=>{
   const entries=classContactBooks.vwej3;
-  assert.deepEqual(entries.map(entry=>entry.date),['2026-08-31','2026-09-01','2026-09-02','2026-09-03','2026-09-04','2026-09-07','2026-09-08','2026-09-09','2026-09-10']);
-  assert.deepEqual(contactBookMonths(entries),['2026-09','2026-08']);
+  assert.deepEqual(entries.map(entry=>entry.date),['2026-08-31','2026-09-01','2026-09-02','2026-09-03','2026-09-04','2026-09-07','2026-09-08','2026-09-09','2026-09-10','2026-09-21','2026-09-22','2026-09-23','2026-09-24','2026-09-29','2026-09-30','2026-10-01','2026-10-02']);
+  assert.deepEqual(contactBookMonths(entries),['2026-10','2026-09','2026-08']);
   assert.equal(new Set(entries.map(entry=>entry.id)).size,entries.length);
 });
 
