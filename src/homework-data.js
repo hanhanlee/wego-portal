@@ -2,6 +2,31 @@ export const classHomework = {
   vwej3: {
     title: '一忠英文作業',
     periods: [{
+    id:'2026-10-12-1a',note:'依 1A Weekly Homework 原表轉錄。',period:'2026/10/12–10/30',image:'assets/class1/homework/2026-10-12-1a.png',source:'Weekly Homework（1A，2026-10）',
+    weeks:[
+      {label:'10/12–10/16',days:[
+        {date:'2026-10-12',label:'10/12（一）',items:['Review E p.8–11']},
+        {date:'2026-10-13',label:'10/13（二）',items:['Review U1–U2 Phonics and sentence']},
+        {date:'2026-10-14',label:'10/14（三）',items:['Review alphabet and reading']},
+        {date:'2026-10-15',label:'10/15（四）',items:['No Homework']},
+        {date:'2026-10-16',label:'10/16（五）',items:['Review E p.28','背 SW：in, school, who, hello, good','簽 phonics and sentence 和 reading and alphabet 兩張練習卷及 U2 小考卷','學生選一本英文讀物回家閱讀']}
+      ]},
+      {label:'10/19–10/23',days:[
+        {date:'2026-10-19',label:'10/19（一）',items:['Prepare for Oral Test Day 1 on Thursday 10/22.']},
+        {date:'2026-10-20',label:'10/20（二）',items:['Review E p.26, 28','背 SW：too, first grade, yes, no, not','發 U3 補充教材']},
+        {date:'2026-10-21',label:'10/21（三）',items:['Review E p.26, 28']},
+        {date:'2026-10-22',label:'10/22（四）',items:['Prepare for Oral Test Day 2 on Thursday 10/29.']},
+        {date:'2026-10-23',label:'10/23（五）',items:['Review E p.26, 28','Review PR p.25–29','下週三考 U3 Quiz（E p.22–26, 28）','Raz Kids']}
+      ]},
+      {label:'10/26–10/30',days:[
+        {date:'2026-10-26',label:'10/26（一）',items:['No School']},
+        {date:'2026-10-27',label:'10/27（二）',items:['Review E p.26, 28','簽習作 p.18','明考 U3 Quiz（E p.22–26, 28）']},
+        {date:'2026-10-28',label:'10/28（三）',items:['Review U3（E p.22–26, 28）']},
+        {date:'2026-10-29',label:'10/29（四）',items:['Review for Listening Test on Monday 11/2.']},
+        {date:'2026-10-30',label:'10/30（五）',items:['Review for midterm test（E p.8–26＋28）','Review PR p.30–34','簽 U3 Quiz']}
+      ]}
+    ]
+    },{
     id: '2026-08-31-1a',
     note: '已更正為 1A 版本。',
     period: '2026/8/31–9/18',

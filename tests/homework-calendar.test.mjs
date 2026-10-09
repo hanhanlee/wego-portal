@@ -18,7 +18,7 @@ test('跨月來源同時對應8月9月，無資料月份不顯示舊原圖',()=>
   const hw=classHomework.vwej3;
   assert.equal(monthSources(hw,'2026-08')[0].id,'2026-08-31-1a');
   assert.equal(monthSources(hw,'2026-09')[0].id,'2026-08-31-1a');
-  assert.deepEqual(monthSources(hw,'2026-10'),[]);
+  assert.equal(monthSources(hw,'2026-10')[0].id,'2026-10-12-1a');
   assert.equal(homeworkDays(hw).filter(day=>day.date.startsWith('2026-09')).length,14);
 });
 test('追加月份保留歷史、同月多來源、同日更正不重複',()=>{
@@ -31,15 +31,15 @@ test('追加月份保留歷史、同月多來源、同日更正不重複',()=>{
   assert.deepEqual(homeworkDays({periods:[]}),[]);
 });
 
-test('15天英文作業只加入一忠，UID依班級與日期固定',()=>{
+test('30天英文作業只加入一忠，UID依班級與日期固定',()=>{
   const events=homeworkEvents('vwej3');
-  assert.equal(events.length,15);
-  assert.equal(new Set(events.map(e=>e.uid)).size,15);
+  assert.equal(events.length,30);
+  assert.equal(new Set(events.map(e=>e.uid)).size,30);
   assert.equal(events[0].uid,'vwej3-english-homework-2026-08-31');
-  assert.equal(events.at(-1).start,'2026-09-18');
+  assert.equal(events.at(-1).start,'2026-10-30');
   assert.ok(events.every(e=>e.start===e.end));
   assert.ok(resolvePortalData().events.every(e=>!e.uid.includes('english-homework')));
-  assert.equal(resolvePortalData('vwej3').events.filter(e=>e.uid.includes('english-homework')).length,15);
+  assert.equal(resolvePortalData('vwej3').events.filter(e=>e.uid.includes('english-homework')).length,30);
   assert.deepEqual(homeworkEvents('unknown'),[]);
 });
 test('訂閱包含完整作業與隔日結束，保留來源的相對日提醒',()=>{

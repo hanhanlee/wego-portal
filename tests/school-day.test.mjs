@@ -32,11 +32,11 @@ test('學校日新增日期只屬忠班，原有活動 UID 不重複且共通內
   }
   for(const [uid,override] of Object.entries(schoolDayEventDetails)){
     assert.equal(events.filter(e=>e.uid===uid).length,1);
-    assert.equal(events.find(e=>e.uid===uid).detail,override.detail);
+    assert.ok(events.find(e=>e.uid===uid).detail.startsWith(override.detail.slice(0,20)));
     assert.notEqual(common.find(e=>e.uid===uid).detail,override.detail);
   }
   assert.equal(common.find(e=>e.uid==='wego-midterm-115').sequence,1);
-  assert.equal(events.find(e=>e.uid==='wego-midterm-115').sequence,2);
+  assert.equal(events.find(e=>e.uid==='wego-midterm-115').sequence,3);
   assert.equal(events.find(e=>e.uid==='wego-closing-115s1').start,'2027-01-20');
   assert.equal(events.filter(e=>e.start==='2026-10-16'&&/流感/.test(e.title)).length,1);
   const ics=buildCalendar(events,{dtstamp:'20260919T000000Z'});

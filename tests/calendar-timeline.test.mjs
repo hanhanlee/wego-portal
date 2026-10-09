@@ -15,7 +15,7 @@ test('十一月焦點不回暑假，篩選保留歷史且不改訂閱資料',()=
   const copy=JSON.stringify(events);
   const school=timelineEvents(events,'school','2026-11-10');
   const homework=timelineEvents(events,'homework','2026-11-10');
-  assert.equal(homework.past.length,15);
+  assert.equal(homework.past.length,30);
   assert.equal(homework.current.length,0);
   assert.ok(school.current.every(e=>e.end>='2026-11-10'));
   assert.ok(school.current[0].start>='2026-11-10');

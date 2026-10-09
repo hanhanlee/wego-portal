@@ -2,6 +2,9 @@ import {commonPortal, classPortals} from './portal-data.js';
 
 // 更新日期來自已核對的發布紀錄，與活動日期分開；同一內容用相同 contentId。
 export const updates = [
+  {id:'art-three-pieces-20261009',contentId:'art-three-pieces-115',scope:'common',updatedAt:'2026-10-09',category:'活動徵件',type:'新增',noticeId:'wego-art-three-pieces-115',summary:'三件平面美術作品請於 11/13（五）前交給美勞老師，校內將進行評選。'},
+  {id:'teacher-important-20261009',contentId:'teacher-20261008-important',scope:'vwej3',updatedAt:'2026-10-09',category:'導師通知',type:'新增',title:'10/8 忠班重要通知與行前準備',summary:'10/14 晨間朗讀與多元學習校外教學、10/15 WBC、考試及珠算期中評量。',path:'/teacher-notes'},
+  {id:'english-homework-20261009',contentId:'english-homework-october',scope:'vwej3',updatedAt:'2026-10-09',category:'英文作業',type:'新增',title:'10/12–10/30 英文作業與期中口試',summary:'新增 1A 英文作業表、10/22 與 10/29 口試、11/2 聽力測驗提醒。',path:'/homework'},
 {
   "id": "contact-book-20261004",
   "contentId": "contact-book-daily",

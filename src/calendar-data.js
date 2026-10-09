@@ -2,6 +2,7 @@ import {contactBookEvents,contactBookEventDetails} from './contact-book-events-2
 import {schoolDayEvents,schoolDayEventDetails} from './school-day-20260919.js';
 import {homeworkEvents} from './homework-calendar.js';
 import {morningSpeechEvents} from './morning-speech-data.js';
+import {classOctoberEvents,octoberEventDetails} from './class-october-20261009.js';
 // 行事曆事件的單一真實來源：網站畫面與 .ics 訂閱 feed 都由此產生，避免兩套資料不同步。
 // 每個事件：
 //   uid    穩定唯一識別（改日期時務必保留同一個 uid，訂閱端才會更新而非新增一筆）
@@ -15,6 +16,7 @@ import {morningSpeechEvents} from './morning-speech-data.js';
 export const common={
   label:'一年級共通',
   events:[
+    {uid:'wego-art-three-pieces-deadline-115',d:'11/13（五）截止',title:'臺北市兒童美術創作比賽（三件展）收件截止',detail:'參賽繳交三件平面作品，每張背面寫班級及姓名；四開紙張，八開作品可黏貼於四開紙上。請勿裱框，不建議畫布底油畫。交給美勞老師，由校內評選。',source:'美術比賽通知（2026-10）',start:'2026-11-13',end:'2026-11-13'},
     {"uid":"wego-summer-115","d":"7/1–8/30","title":"暑假","detail":"暑假期間。","source":"學校行事曆","start":"2026-07-01","end":"2026-08-30"},
     {"uid":"wego-summer-classes-115","d":"7/13–8/14","title":"暑期活動","detail":"週一至週五上課，共五週。","source":"學校行事曆","start":"2026-07-13","end":"2026-08-14"},
     {"uid":"wego-prepare-115s1","d":"8/27–28","title":"開學準備日（學生不到校）","detail":"全體教職員到校準備開學事宜。","source":"學校行事曆","start":"2026-08-27","end":"2026-08-28"},
@@ -63,10 +65,11 @@ export const classes={
     label:'一忠',
     events:[
       ...homeworkEvents('vwej3'),
-      ...schoolDayEvents.map(event=>({...event,...(contactBookEventDetails[event.uid]||{})})),
+      ...schoolDayEvents.map(event=>({...event,...(contactBookEventDetails[event.uid]||{}),...(octoberEventDetails[event.uid]||{})})),
       ...contactBookEvents,
-      ...common.events.filter(event=>schoolDayEventDetails[event.uid]).map(event=>({...event,...schoolDayEventDetails[event.uid]})),
-      ...morningSpeechEvents('vwej3').map(event=>({...event,...(contactBookEventDetails[event.uid]||{})})),
+      ...classOctoberEvents,
+      ...common.events.filter(event=>schoolDayEventDetails[event.uid]||octoberEventDetails[event.uid]).map(event=>({...event,...(schoolDayEventDetails[event.uid]||{}),...(octoberEventDetails[event.uid]||{})})),
+      ...morningSpeechEvents('vwej3').map(event=>({...event,...(contactBookEventDetails[event.uid]||{}),...(octoberEventDetails[event.uid]||{})})),
       {uid:'vwej3-health-check-20260917',d:'9/17（四）',title:'一年級健康檢查',detail:'當天穿體育服；因檢查需脫鞋，請將白色運動鞋標示姓名。9/18（五）穿方便運動的便服。尚未帶牙刷者，請於 9/16（三）帶到學校。',source:'一忠導師 LINE 通知（2026-09-15）',start:'2026-09-17',end:'2026-09-17'},
       {uid:'vwej3-chinese-lesson-2-test-20260914',d:'9/14（一）',title:'國語(二)平測+聽寫',detail:'聽寫範圍：注音1本第二課。每週皆有國語平測+聽寫，請利用假日多做練習。國語課本中的每一個插圖名稱，也都是要熟練的語詞。',source:'一忠導師 LINE 通知（2026-09-11）',start:'2026-09-14',end:'2026-09-14'},
       {uid:'vwej3-math-unit-1-test-20260915',d:'9/15（二）',title:'數學第一單元平測',detail:'請利用假日提早準備。',source:'一忠導師 LINE 通知（2026-09-11）',start:'2026-09-15',end:'2026-09-15'},
